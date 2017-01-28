@@ -53,10 +53,6 @@ public class BlastBallController : MonoBehaviour {
     void OnMouseOver()
     {
         mouseOver = true;
-        if (Input.GetMouseButtonDown(0))
-        {
-
-        }
     }
 
     void OnMouseExit()
