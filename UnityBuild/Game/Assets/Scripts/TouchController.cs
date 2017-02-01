@@ -47,7 +47,6 @@ public class TouchController : MonoBehaviour {
             if (velocityScaleTimer >= 0.05f)
             {
                 velocityScaleTimer -= 0.05f;
-                Debug.Log(gameObject.tag + ": " + velocityScaleTimer);
             }   
         }
 
@@ -63,8 +62,8 @@ public class TouchController : MonoBehaviour {
         if (clickOnBall)
         {
             //Get the position of this object
-            Vector2 ballPos = this.gameObject.transform.position;
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 playerPos = this.gameObject.transform.position;
+            Vector2 mouseUpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             //If our child isn't null (we already have an active bullet)
             if (child != null)
@@ -74,19 +73,31 @@ public class TouchController : MonoBehaviour {
             }
 
             //Spawn our child
-            if (this.gameObject.tag == "player1")
-            {
-                child = Instantiate(prefabBullet, new Vector2(ballPos.x + 0.5f, ballPos.y), Quaternion.identity);
-            }
-            else if (this.gameObject.tag == "player2")
-            {
-                child = Instantiate(prefabBullet, new Vector2(ballPos.x - 0.5f, ballPos.y), Quaternion.identity);
-            }
-            else { child = null; }
+
+            //Find the distance between the mouse upon release and the player
+            float distance = Vector2.Distance(mouseUpPos, playerPos);
+
+            //Figure our where abouts to spawn the ball around the circle
+            Vector2 difference = new Vector2(playerPos.x - mouseUpPos.x, playerPos.y - mouseUpPos.y);
+
+            float spawnDist = 0.5f;
+
+            //Cap
+            if (difference.x > spawnDist)
+            {  difference = new Vector2(spawnDist, difference.y); }
+            if (difference.x < -spawnDist)
+            { difference = new Vector2(-spawnDist, difference.y); }
+            if (difference.y > spawnDist)
+            { difference = new Vector2(difference.x, spawnDist); }
+            if (difference.y < -spawnDist)
+            { difference = new Vector2(difference.x, -spawnDist); }
+
+            //Spawn child bullet
+            child = Instantiate(prefabBullet, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
 
             //Give it velocity relative to how quickly you released
-            Vector2 ballVel = new Vector2(mousePos.x - ballPos.x, mousePos.y - ballPos.y).normalized;
-            ballVel *= velocityScaleTimer;
+            Vector2 ballVel = new Vector2(mouseUpPos.x - playerPos.x, mouseUpPos.y - playerPos.y).normalized;
+            ballVel *= (velocityScaleTimer + distance);
             child.GetComponent<Rigidbody2D>().AddForce(ballVel, ForceMode2D.Impulse);
 
             //Reset the velocityScaleTimer
