@@ -1,0 +1,27 @@
+Joseph:
+
+	-Level design/layout
+
+	- Create ball mechanic in Unity
+	- Create first level with working physics
+	
+John:
+
+	- Level design/layout
+	- Art style concepts
+	
+	-Design different balls for the player to use
+	
+Charlie:
+
+	- Level design/layout
+	- Art style concepts
+	
+	- Design some particle FX for when balls hit the walls/players, etc.
+	
+Caitlin:
+
+	- Level design/layout
+	- Art style concepts
+	
+	-Design different terrains for the level
