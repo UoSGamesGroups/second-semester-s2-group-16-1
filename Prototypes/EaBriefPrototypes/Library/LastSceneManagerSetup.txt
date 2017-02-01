@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CaitlinPrototype.unity
+- path: Assets/Scenes/CharliePrototype.unity
   isLoaded: 1
   isActive: 1

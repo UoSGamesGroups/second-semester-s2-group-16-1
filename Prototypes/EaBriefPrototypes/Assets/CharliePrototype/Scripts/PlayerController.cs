@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour {
             }
 
             //Caitlin prototypes
-            if (this.gameObject.name == "p1")
+            else if (this.gameObject.name == "p1")
             {
                 child = Instantiate(bullet, new Vector2(ballPos.x, ballPos.y + 0.5f), Quaternion.identity);
             }
