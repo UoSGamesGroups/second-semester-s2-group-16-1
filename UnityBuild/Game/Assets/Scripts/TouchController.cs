@@ -38,12 +38,17 @@ public class TouchController : MonoBehaviour {
         velocityScaleTimer = maxScale;
     }
 
+    //Called every frame
     void mouseController()
     {
+        //mouseDown holds whether mouse is down or not
         mouseDown = Input.GetMouseButton(0);
 
+        //If mouse is down
         if (mouseDown)
         {
+            //Reduce your velocity scale over time
+            //(Holding longer = weaker bullet)
             if (velocityScaleTimer >= 0.05f)
             {
                 velocityScaleTimer -= 0.05f;
