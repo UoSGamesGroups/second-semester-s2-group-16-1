@@ -1,0 +1,26 @@
+Joseph:
+	-Unity: Create prefabs for the four new ball types
+	-Unity: Create two of the levels within Unity
+	-Unity: Create a simple, function level select screen
+	-Unity: Add loss-checks, players get reset and winner gains a point when a player gets knocked out of bounds
+
+Charlie:
+	
+	-Design UI for a round-timer
+	-Design and create the art assets for dynamic(moving) obstacles:
+		~Rotating cross
+		~Rotating square
+		~Expanding circle
+		~Stretching/squashing square
+	-Create some GUI designs for how the players will switch balls
+	
+Caitlin:
+	
+	-Design GUI for selecting balls
+	-Design the level graphics/layout for the level select screen
+	-Create different colour monochromatic colour variations for the level design
+	
+John:
+	
+	-Create the art assets for the four new ball types
+	-Level design/layout

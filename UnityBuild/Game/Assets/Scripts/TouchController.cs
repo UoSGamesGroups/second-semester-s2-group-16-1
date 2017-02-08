@@ -11,6 +11,7 @@ public class TouchController : MonoBehaviour {
 
     float velocityScaleTimer;
     public float maxScale;
+    public float scaleTimerDegrade;
 
     bool isPulling;
     bool mouseDown;
@@ -49,9 +50,9 @@ public class TouchController : MonoBehaviour {
         {
             //Reduce your velocity scale over time
             //(Holding longer = weaker bullet)
-            if (velocityScaleTimer >= 0.05f)
+            if (velocityScaleTimer >= scaleTimerDegrade)
             {
-                velocityScaleTimer -= 0.05f;
+                velocityScaleTimer -= scaleTimerDegrade;
             }   
         }
 
