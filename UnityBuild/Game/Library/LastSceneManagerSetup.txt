@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/testLevel.unity
+- path: Assets/Scenes/octagonLevel.unity
   isLoaded: 1
   isActive: 1
