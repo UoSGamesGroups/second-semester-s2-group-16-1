@@ -5,9 +5,14 @@ using UnityEngine;
 public class TouchController : MonoBehaviour {
 
     Rigidbody2D rb;
-    public GameObject prefabBullet;
+    public GameObject prefabRegularBall;
+    public GameObject prefabBalloonBall;
+    public GameObject prefabGumBall;
+    public GameObject prefabSlimeBall;
+    public GameObject prefabSteelBall;
 
     GameObject child;
+    int currentBall = 0;
 
     float velocityScaleTimer;
     public float maxScale;
@@ -30,6 +35,7 @@ public class TouchController : MonoBehaviour {
 	void Update ()
     {
         mouseController();
+        temporaryInputController();
 	}
 
     void OnMouseOver() { mouseOver = true; }
@@ -37,6 +43,26 @@ public class TouchController : MonoBehaviour {
     void OnMouseDown()
     {
         velocityScaleTimer = maxScale;
+    }
+
+    void temporaryInputController()
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        { selectBall(0); }
+        else if (Input.GetKeyUp(KeyCode.Alpha2))
+        { selectBall(1); }
+        else if (Input.GetKeyUp(KeyCode.Alpha3))
+        { selectBall(2); }
+        else if (Input.GetKeyUp(KeyCode.Alpha4))
+        { selectBall(3); }
+        else if (Input.GetKeyUp(KeyCode.Alpha5))
+        { selectBall(4); }
+    }
+
+    public void selectBall(int i)
+    {
+        currentBall = i;
+        print("currentBall: " + currentBall);
     }
 
     //Called every frame
@@ -99,7 +125,27 @@ public class TouchController : MonoBehaviour {
             { difference = new Vector2(difference.x, -spawnDist); }
 
             //Spawn child bullet
-            child = Instantiate(prefabBullet, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+            switch (currentBall)
+            {
+                case 1:
+                    child = Instantiate(prefabBalloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                    break;
+                case 2:
+                    child = Instantiate(prefabGumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                    break;
+                case 3:
+                    child = Instantiate(prefabSlimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                    break;
+                case 4:
+                    child = Instantiate(prefabSteelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                    break;
+                case 0:
+                default:
+                    child = Instantiate(prefabRegularBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                    break;
+            }
+
+            
 
             //Give it velocity relative to how quickly you released
             Vector2 ballVel = new Vector2(mouseUpPos.x - playerPos.x, mouseUpPos.y - playerPos.y).normalized;
