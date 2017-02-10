@@ -62,7 +62,7 @@ public class TouchController : MonoBehaviour {
     public void selectBall(int i)
     {
         currentBall = i;
-        print("currentBall: " + currentBall);
+        print(this.gameObject.tag +  " currentBall: " + currentBall);
     }
 
     //Called every frame
