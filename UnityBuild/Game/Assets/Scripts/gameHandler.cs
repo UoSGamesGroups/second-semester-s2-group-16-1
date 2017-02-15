@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; //For SceneManager.LoadScene
 
 public class gameHandler : MonoBehaviour {
 
@@ -18,5 +19,10 @@ public class gameHandler : MonoBehaviour {
         TouchController tc = playerTwo.GetComponent<TouchController>();
 
         tc.selectBall(ball);
+    }
+
+    public void returnToLevelSelect()
+    {
+        SceneManager.LoadScene(0);
     }
 }

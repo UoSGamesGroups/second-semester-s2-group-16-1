@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchController : MonoBehaviour {
+public class TouchController : MonoBehaviour
+{
 
     Rigidbody2D rb;
     public GameObject prefabRegularBall;
@@ -12,7 +13,9 @@ public class TouchController : MonoBehaviour {
     public GameObject prefabSteelBall;
 
     GameObject child;
-    int currentBall = 0;
+    int currentBall = 1;
+
+    int currentTouch;
 
     float velocityScaleTimer;
     public float maxScale;
@@ -23,149 +26,189 @@ public class TouchController : MonoBehaviour {
     bool mouseOver;
     bool clickOnBall;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
+        Input.multiTouchEnabled = true;
         isPulling = mouseDown = mouseOver = clickOnBall = false;
         child = null;
         rb = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        mouseController();
-        temporaryInputController();
-	}
-
-    void OnMouseOver() { mouseOver = true; }
-    void OnMouseExit() { mouseOver = false; }
-    void OnMouseDown()
-    {
-        velocityScaleTimer = maxScale;
     }
 
-    void temporaryInputController()
+    // Update is called once per frame
+    void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        { selectBall(0); }
-        else if (Input.GetKeyUp(KeyCode.Alpha2))
-        { selectBall(1); }
-        else if (Input.GetKeyUp(KeyCode.Alpha3))
-        { selectBall(2); }
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-        { selectBall(3); }
-        else if (Input.GetKeyUp(KeyCode.Alpha5))
-        { selectBall(4); }
+        touchController();
+
+    }
+
+    void touchController()
+    {
+        //If someone is touching
+        if (Input.touchCount > 0)
+        {
+            //Hold playerpos and touch pos
+            Vector2 PlayerPos = this.gameObject.transform.position;
+            Vector2 touchPos = new Vector2(0, 0);
+
+            if (clickOnBall)
+            {
+                touchPos = touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
+            }
+
+            if (!clickOnBall)
+            {
+                foreach (Touch touch in Input.touches)
+                {
+                    if (touch.phase == TouchPhase.Began)
+                    {
+
+                        touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+                        if (Vector2.Distance(touchPos, PlayerPos) < 0.5f)
+                        {
+                            currentTouch = touch.fingerId;
+                            clickOnBall = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //Hold
+            if (Input.GetTouch(currentTouch).phase == TouchPhase.Stationary || Input.GetTouch(currentTouch).phase == TouchPhase.Moved)
+            {
+
+                if (clickOnBall)
+                {
+                    velocityScaleTimer -= scaleTimerDegrade;
+                    touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
+                }
+            }
+            //Release
+            if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
+            {
+                if (clickOnBall)
+                {
+                    shoot(touchPos);
+                    clickOnBall = false;
+                }
+                velocityScaleTimer = maxScale;
+            }
+        }
     }
 
     public void selectBall(int i)
     {
         currentBall = i;
-        print(this.gameObject.tag +  " currentBall: " + currentBall);
+        print(this.gameObject.tag + " currentBall: " + currentBall);
     }
 
-    //Called every frame
-    void mouseController()
+    void shoot(Vector2 touchReleasePos)
     {
-        //mouseDown holds whether mouse is down or not
-        mouseDown = Input.GetMouseButton(0);
+        //Get the position of this object
+        Vector2 playerPos = this.gameObject.transform.position;
+        //Vector2 mouseUpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //If mouse is down
-        if (mouseDown)
+        //If our child isn't null (we already have an active bullet)
+        if (child != null)
         {
-            //Reduce your velocity scale over time
-            //(Holding longer = weaker bullet)
-            if (velocityScaleTimer >= scaleTimerDegrade)
-            {
-                velocityScaleTimer -= scaleTimerDegrade;
-            }   
+            //Destroy it
+            Destroy(child.gameObject);
         }
 
-        if (mouseOver && mouseDown)
+        //Spawn our child
+
+        //Find the distance between the mouse upon release and the player
+        float distance = Vector2.Distance(touchReleasePos, playerPos);
+
+        //Figure our where abouts to spawn the ball around the circle
+        Vector2 difference = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y);
+
+        float spawnDist = 0.5f;
+
+        //Cap
+        if (difference.x > spawnDist)
+        { difference = new Vector2(spawnDist, difference.y); }
+        if (difference.x < -spawnDist)
+        { difference = new Vector2(-spawnDist, difference.y); }
+        if (difference.y > spawnDist)
+        { difference = new Vector2(difference.x, spawnDist); }
+        if (difference.y < -spawnDist)
+        { difference = new Vector2(difference.x, -spawnDist); }
+
+        //Spawn child bullet
+        switch (currentBall)
         {
-            clickOnBall = true;
+            case 1:
+                child = Instantiate(prefabBalloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 2:
+                child = Instantiate(prefabGumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 3:
+                child = Instantiate(prefabSlimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 4:
+                child = Instantiate(prefabSteelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 0:
+            default:
+                child = Instantiate(prefabRegularBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
         }
+
+        //Give it velocity relative to how quickly you released
+        Vector2 ballVel = new Vector2(touchReleasePos.x - playerPos.x, touchReleasePos.y - playerPos.y).normalized;
+        ballVel *= (velocityScaleTimer + distance);
+        child.GetComponent<Rigidbody2D>().AddForce(ballVel, ForceMode2D.Impulse);
+
+        //Reset the velocityScaleTimer
+        velocityScaleTimer = maxScale;
     }
 
-    void OnMouseUp()
+    void OnGUI()
     {
+        Vector2 playeronepos = new Vector2(0, 0);
+        Vector2 playertwopos = new Vector2(0, 0);
 
-        if (clickOnBall)
+        if (this.gameObject.tag == "player1")
         {
-            //Get the position of this object
-            Vector2 playerPos = this.gameObject.transform.position;
-            Vector2 mouseUpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            playeronepos = this.gameObject.transform.position;
+            GUI.Label(new Rect(20, 20, 100, 20), "p1: " + playeronepos.x + " " + playeronepos.y);
 
-            //If our child isn't null (we already have an active bullet)
-            if (child != null)
-            {
-                //Destroy it
-                Destroy(child.gameObject);
-            }
-
-            //Spawn our child
-
-            //Find the distance between the mouse upon release and the player
-            float distance = Vector2.Distance(mouseUpPos, playerPos);
-
-            //Figure our where abouts to spawn the ball around the circle
-            Vector2 difference = new Vector2(playerPos.x - mouseUpPos.x, playerPos.y - mouseUpPos.y);
-
-            float spawnDist = 0.5f;
-
-            //Cap
-            if (difference.x > spawnDist)
-            {  difference = new Vector2(spawnDist, difference.y); }
-            if (difference.x < -spawnDist)
-            { difference = new Vector2(-spawnDist, difference.y); }
-            if (difference.y > spawnDist)
-            { difference = new Vector2(difference.x, spawnDist); }
-            if (difference.y < -spawnDist)
-            { difference = new Vector2(difference.x, -spawnDist); }
-
-            //Spawn child bullet
-            switch (currentBall)
-            {
-                case 1:
-                    child = Instantiate(prefabBalloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
-                    break;
-                case 2:
-                    child = Instantiate(prefabGumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
-                    break;
-                case 3:
-                    child = Instantiate(prefabSlimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
-                    break;
-                case 4:
-                    child = Instantiate(prefabSteelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
-                    break;
-                case 0:
-                default:
-                    child = Instantiate(prefabRegularBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
-                    break;
-            }
-
+            GUI.Label(new Rect(150, 50, 100, 20), "p1 touchId: " + currentTouch);
             
+            GUI.Label(new Rect(300, 50, 150, 20), "p1: " + clickOnBall);
+        }
+            
+        if (this.gameObject.tag == "player2")
+        {
+            playertwopos = this.gameObject.transform.position;
+            GUI.Label(new Rect(20, 50, 100, 20), "p2: " + playertwopos.x + " " + playertwopos.y);
 
-            //Give it velocity relative to how quickly you released
-            Vector2 ballVel = new Vector2(mouseUpPos.x - playerPos.x, mouseUpPos.y - playerPos.y).normalized;
-            ballVel *= (velocityScaleTimer + distance);
-            child.GetComponent<Rigidbody2D>().AddForce(ballVel, ForceMode2D.Impulse);
+            GUI.Label(new Rect(150, 80, 100, 20), "p2 touchId: " + currentTouch);
 
-            //Reset the velocityScaleTimer
-            velocityScaleTimer = maxScale;
-
+            GUI.Label(new Rect(300, 80, 150, 20), "p2: " + clickOnBall);
         }
 
 
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Vector2 tempTouchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
 
+                string toPrint = "touch ";
+                toPrint += i;
+                toPrint += " ";
+                toPrint += System.Math.Round(tempTouchPos.x, 2);
+                toPrint += " , ";
+                toPrint += System.Math.Round(tempTouchPos.y, 2);
 
+                GUI.Label(new Rect(20, (50 * (i + 2)), 500, 20), toPrint );
+
+            }
+        }
     }
-
-    
-
-    
-
-    
-
 }

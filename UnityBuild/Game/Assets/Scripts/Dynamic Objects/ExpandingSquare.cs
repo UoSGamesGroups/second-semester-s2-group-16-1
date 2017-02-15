@@ -50,8 +50,8 @@ public class ExpandingSquare : MonoBehaviour {
         float yScale = transform.localScale.y;
         for (int i = 0; i < 100; i++)
         {
-            xScale -= 0.02f;
-            yScale += 0.02f;
+            xScale -= 0.0025f;
+            yScale += 0.0025f;
             transform.localScale = new Vector3(xScale, yScale);
             yield return new WaitForSeconds(0.01f);
         }
@@ -70,8 +70,8 @@ public class ExpandingSquare : MonoBehaviour {
         float yScale = transform.localScale.y;
         for (int i = 0; i < 100; i++)
         {
-            xScale += 0.02f;
-            yScale -= 0.02f;
+            xScale += 0.0025f;
+            yScale -= 0.0025f;
             transform.localScale = new Vector3(xScale, yScale);
             yield return new WaitForSeconds(0.01f);
         }

@@ -26,6 +26,7 @@ public class LevelController : MonoBehaviour {
 
     public void loadLevel(int lv)
     {
+
         //Change scene to the mainGame
         SceneManager.LoadScene(1);
 
