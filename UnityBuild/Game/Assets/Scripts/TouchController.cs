@@ -40,29 +40,59 @@ public class TouchController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        mouseController();
-        temporaryInputController();
+        //mouseController();
+
+        touchController();
+        
+
+        
+
+
+
+
 	}
+
+    void touchController()
+    {
+        //If someone is touching
+        if (Input.touchCount > 0)
+        {
+            //For all touches
+            foreach (Touch touch in Input.touches)
+            {
+                Vector2 playerPos = this.gameObject.transform.position;
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+                if (touch.phase == TouchPhase.Began)
+                { 
+                    if (Physics.Raycast(touchPos, playerPos))
+                    {
+                        clickOnBall = true;
+                    }
+                }
+
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    if (clickOnBall)
+                    {
+                        OnMouseUp();
+                    }
+                }
+
+            }
+
+
+        }
+
+
+    }
 
     void OnMouseOver() { mouseOver = true; }
     void OnMouseExit() { mouseOver = false; }
     void OnMouseDown()
     {
         velocityScaleTimer = maxScale;
-    }
-
-    void temporaryInputController()
-    {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        { selectBall(0); }
-        else if (Input.GetKeyUp(KeyCode.Alpha2))
-        { selectBall(1); }
-        else if (Input.GetKeyUp(KeyCode.Alpha3))
-        { selectBall(2); }
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-        { selectBall(3); }
-        else if (Input.GetKeyUp(KeyCode.Alpha5))
-        { selectBall(4); }
     }
 
     public void selectBall(int i)
@@ -75,7 +105,7 @@ public class TouchController : MonoBehaviour {
     void mouseController()
     {
         //mouseDown holds whether mouse is down or not
-        mouseDown = Input.GetMouseButton(0);
+        //mouseDown = Input.GetMouseButton(0);
 
         //If mouse is down
         if (mouseDown)
@@ -88,10 +118,10 @@ public class TouchController : MonoBehaviour {
             }   
         }
 
-        if (mouseOver && mouseDown)
-        {
-            clickOnBall = true;
-        }
+        //if (mouseOver && mouseDown)
+        //{
+        //    clickOnBall = true;
+        //}
     }
 
     void OnMouseUp()

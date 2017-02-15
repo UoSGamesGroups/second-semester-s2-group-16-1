@@ -1,0 +1,36 @@
+John:
+
+	-Create art assets in separate pieces to be put into Unity
+	-Create different types of arenas
+	-Designs of how we will show each players score in the level
+
+Caitlin:
+
+	-Breaking the level designs into individual art assets
+	-Create ball-select GUI
+	-Level selecting GUI
+	
+
+Charlie:
+
+	-Breaking level designs into individual art assets	
+	-Create ball-select GUI
+	-Level selecting GUI
+	
+
+Joseph:
+
+	-Allow build to handle multiple touch inputs
+	-Add all ball-select GUI into Unity build
+	-Adding individual art assets into level layout prefabs
+	-Add a player score
+	
+
+
+Playtesting questions:
+
+	Should we limit how many balls you can have at once?
+	Which timer design do you prefer?
+	Which player score design do you prefer?
+	How do you prefer to select your ball?
+	Art style?
