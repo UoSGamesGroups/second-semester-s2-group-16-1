@@ -23,6 +23,12 @@ public class TouchController : MonoBehaviour {
     bool mouseOver;
     bool clickOnBall;
 
+    //Temporary
+    bool deletePreviousBall = false;
+
+    void changeBallDeletion()
+    { deletePreviousBall = !deletePreviousBall; }
+
 	// Use this for initialization
 	void Start ()
     {
@@ -97,11 +103,14 @@ public class TouchController : MonoBehaviour {
             Vector2 playerPos = this.gameObject.transform.position;
             Vector2 mouseUpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            //If our child isn't null (we already have an active bullet)
-            if (child != null)
+            if (deletePreviousBall)
             {
-                //Destroy it
-                Destroy(child.gameObject);
+                //If our child isn't null (we already have an active bullet)
+                if (child != null)
+                {
+                    //Destroy it
+                    Destroy(child.gameObject);
+                }
             }
 
             //Spawn our child
