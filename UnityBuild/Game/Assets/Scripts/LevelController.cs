@@ -24,6 +24,24 @@ public class LevelController : MonoBehaviour {
     public void mutatePlayerOneScore(int i) { playerOneScore += i; }
     public void mutatePlayerTwoScore(int i) { playerTwoScore += i; }
 
+    //TEMPORARY CODE - START
+    //
+    public void loadSquSide()
+    {
+        SceneManager.LoadScene(2);
+        StartCoroutine(sideLvSetup());
+    }
+    //
+    IEnumerator sideLvSetup()
+    {
+        yield return new WaitForSeconds(0.1f);
+        //Instantiate both players
+        playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
+        playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
+    }
+    //
+    //TEMPORARY CODE - END
+
     public void loadLevel(int lv)
     {
 
@@ -89,8 +107,8 @@ public class LevelController : MonoBehaviour {
         switch(currentLevel)
         {
             case 1: //Square level
-                playerOne.transform.position = new Vector2(-6f, 0f);
-                playerTwo.transform.position = new Vector2(6f, 0f);
+                playerOne.transform.position = new Vector2(-5f, 0f);
+                playerTwo.transform.position = new Vector2(5f, 0f);
                 break;
             case 2: //Octagon level
                 playerOne.transform.position = new Vector2(-4f, 0f);

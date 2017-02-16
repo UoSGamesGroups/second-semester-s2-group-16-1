@@ -65,7 +65,7 @@ public class TouchController : MonoBehaviour
 
                         touchPos = Camera.main.ScreenToWorldPoint(touch.position);
 
-                        if (Vector2.Distance(touchPos, PlayerPos) < 0.5f)
+                        if (Vector2.Distance(touchPos, PlayerPos) < 0.75f)
                         {
                             currentTouch = touch.fingerId;
                             clickOnBall = true;
