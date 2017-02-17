@@ -31,7 +31,6 @@ public class LevelController : MonoBehaviour {
         SceneManager.LoadScene(2);
         StartCoroutine(sideLvSetup());
     }
-    //
     IEnumerator sideLvSetup()
     {
         yield return new WaitForSeconds(0.1f);
@@ -41,7 +40,34 @@ public class LevelController : MonoBehaviour {
         //Instantiate both players
         playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
         playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
+
+        //Reset players scores upon loading a new level
+        playerOneScore = playerTwoScore = 0;
+
     }
+
+    //------
+
+    public void loadSquClick()
+    {
+        SceneManager.LoadScene(3);
+        StartCoroutine(clickLvSetup());
+    }
+
+    IEnumerator clickLvSetup()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        currentLevel = 1;
+
+        //Instantiate both players
+        playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
+        playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
+
+        //Reset players scores upon loading a new level
+        playerOneScore = playerTwoScore = 0;
+    }
+
     //
     //TEMPORARY CODE - END
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TouchController : MonoBehaviour
 {
@@ -39,7 +40,6 @@ public class TouchController : MonoBehaviour
     void Update()
     {
         touchController();
-
     }
 
     void touchController()
@@ -75,6 +75,7 @@ public class TouchController : MonoBehaviour
                 }
             }
 
+
             //Hold
             if (Input.GetTouch(currentTouch).phase == TouchPhase.Stationary || Input.GetTouch(currentTouch).phase == TouchPhase.Moved)
             {
@@ -88,12 +89,39 @@ public class TouchController : MonoBehaviour
             //Release
             if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
             {
-                if (clickOnBall)
+
+                //If the finger moves enough...
+                if (Vector2.Distance(PlayerPos, touchPos) > 2)
                 {
-                    shoot(touchPos);
-                    clickOnBall = false;
+                    if (clickOnBall)
+                    {
+                        shoot(touchPos);
+                        clickOnBall = false;
+                    }
+                    velocityScaleTimer = maxScale;
                 }
-                velocityScaleTimer = maxScale;
+                //Else if it's just a tap
+                else if (Vector2.Distance(PlayerPos, touchPos) < 2)
+                {
+                    //and we're on the right scene
+                    if (SceneManager.GetActiveScene().buildIndex == 3)
+                    {
+                        GameObject canvas = GameObject.Find("Canvas");
+                        CanvasController cc = canvas.GetComponent<CanvasController>();
+
+                        if (this.gameObject.tag == "player1")
+                        {
+                            cc.showPlayerOneBallGUI(true);
+                        }
+                        else if (this.gameObject.tag == "player2")
+                        {
+                            cc.showPlayerTwoBallGUI(true);
+                        }
+                       
+                    }
+                }
+
+                
             }
         }
     }
