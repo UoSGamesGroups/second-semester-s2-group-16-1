@@ -35,6 +35,9 @@ public class LevelController : MonoBehaviour {
     IEnumerator sideLvSetup()
     {
         yield return new WaitForSeconds(0.1f);
+
+        currentLevel = 1;
+
         //Instantiate both players
         playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
         playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
@@ -81,10 +84,6 @@ public class LevelController : MonoBehaviour {
         //Reset players positions
         ResetPlayers();
 
-        ////Grab the playerOne and playerTwo game objects
-        //playerOne = GameObject.FindGameObjectWithTag("player1");
-        //playerTwo = GameObject.FindGameObjectWithTag("player2");
-
         //Spawn in the new level
         switch (lv)
         {
@@ -103,8 +102,15 @@ public class LevelController : MonoBehaviour {
     //Reset players
     public void ResetPlayers()
     {
+
+        print("currentLevel: " + currentLevel);
+
+        //Grab the playerOne and playerTwo game objects
+        playerOne = GameObject.FindGameObjectWithTag("player1");
+        playerTwo = GameObject.FindGameObjectWithTag("player2");
+
         //Reset the players positions
-        switch(currentLevel)
+        switch (currentLevel)
         {
             case 1: //Square level
                 playerOne.transform.position = new Vector2(-5f, 0f);
