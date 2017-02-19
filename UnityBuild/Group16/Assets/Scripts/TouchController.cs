@@ -89,6 +89,36 @@ public class TouchController : MonoBehaviour
             //Release
             if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
             {
+                if (SceneManager.GetActiveScene().buildIndex == 3)
+                {
+                    if (Vector2.Distance(PlayerPos, touchPos) < 2)
+                    {
+
+                        clickOnBall = false;
+
+                        GameObject canvas = GameObject.Find("Canvas");
+                        CanvasController cc = canvas.GetComponent<CanvasController>();
+
+                        if (this.gameObject.tag == "player1")
+                        {
+                            cc.showPlayerOneBallGUI(true);
+                        }
+                        else if (this.gameObject.tag == "player2")
+                        {
+                            cc.showPlayerTwoBallGUI(true);
+                        }
+                    }
+                    else
+                    {
+                        if (clickOnBall)
+                        {
+                            shoot(touchPos);
+                            clickOnBall = false;
+                        }
+                        velocityScaleTimer = maxScale;
+                    }
+                    return;
+                }
 
                 //If the finger moves enough...
                 if (Vector2.Distance(PlayerPos, touchPos) > 2)
@@ -103,25 +133,9 @@ public class TouchController : MonoBehaviour
                 //Else if it's just a tap
                 else if (Vector2.Distance(PlayerPos, touchPos) < 2)
                 {
-                    //and we're on the right scene
-                    if (SceneManager.GetActiveScene().buildIndex == 3)
-                    {
-                        GameObject canvas = GameObject.Find("Canvas");
-                        CanvasController cc = canvas.GetComponent<CanvasController>();
-
-                        if (this.gameObject.tag == "player1")
-                        {
-                            cc.showPlayerOneBallGUI(true);
-                        }
-                        else if (this.gameObject.tag == "player2")
-                        {
-                            cc.showPlayerTwoBallGUI(true);
-                        }
-                       
-                    }
+                    clickOnBall = false;
                 }
 
-                
             }
         }
     }
