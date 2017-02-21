@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class regBulletController : MonoBehaviour
 {
-
     public float secondsToLive;
 
     // Use this for initialization
