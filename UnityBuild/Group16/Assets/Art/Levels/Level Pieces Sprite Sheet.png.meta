@@ -1,0 +1,680 @@
+fileFormatVersion: 2
+guid: 83b396b4f0696ce46b9c6fd186453121
+timeCreated: 1487766262
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Level Pieces Sprite Sheet_0
+    21300002: Level Pieces Sprite Sheet_1
+    21300004: Level Pieces Sprite Sheet_2
+    21300006: Level Pieces Sprite Sheet_3
+    21300008: Level Pieces Sprite Sheet_4
+    21300010: Level Pieces Sprite Sheet_5
+    21300012: Level Pieces Sprite Sheet_6
+    21300014: Level Pieces Sprite Sheet_7
+    21300016: Level Pieces Sprite Sheet_8
+    21300018: Level Pieces Sprite Sheet_9
+    21300020: Level Pieces Sprite Sheet_10
+    21300022: Level Pieces Sprite Sheet_11
+    21300024: Level Pieces Sprite Sheet_12
+    21300026: Level Pieces Sprite Sheet_13
+    21300028: Level Pieces Sprite Sheet_14
+    21300030: Level Pieces Sprite Sheet_15
+    21300032: Level Pieces Sprite Sheet_16
+    21300034: Level Pieces Sprite Sheet_17
+    21300036: Level Pieces Sprite Sheet_18
+    21300038: Level Pieces Sprite Sheet_19
+    21300040: Level Pieces Sprite Sheet_20
+    21300042: Level Pieces Sprite Sheet_21
+    21300044: Level Pieces Sprite Sheet_22
+    21300046: Level Pieces Sprite Sheet_23
+    21300048: Level Pieces Sprite Sheet_24
+    21300050: Level Pieces Sprite Sheet_25
+    21300052: Level Pieces Sprite Sheet_26
+    21300054: Level Pieces Sprite Sheet_27
+    21300056: Level Pieces Sprite Sheet_28
+    21300058: Level Pieces Sprite Sheet_29
+    21300060: Level Pieces Sprite Sheet_30
+    21300062: Level Pieces Sprite Sheet_31
+    21300064: Level Pieces Sprite Sheet_32
+    21300066: Level Pieces Sprite Sheet_33
+    21300068: Level Pieces Sprite Sheet_34
+    21300070: Level Pieces Sprite Sheet_35
+    21300072: Level Pieces Sprite Sheet_36
+    21300074: Level Pieces Sprite Sheet_37
+    21300076: Level Pieces Sprite Sheet_38
+    21300078: Level Pieces Sprite Sheet_39
+    21300080: Level Pieces Sprite Sheet_40
+    21300082: Level Pieces Sprite Sheet_41
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 1354
+        width: 43
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 1354
+        width: 45
+        height: 660
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 1354
+        width: 46
+        height: 661
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 1354
+        width: 46
+        height: 661
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1354
+        width: 49
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1354
+        width: 49
+        height: 662
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1807
+        width: 209
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 1807
+        width: 207
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 1807
+        width: 207
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1807
+        width: 207
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 1801
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 1673
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 1525
+        width: 207
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 1525
+        width: 207
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 1354
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 1683
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1482
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 1447
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 1319
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 1364
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 1329
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1175
+        width: 40
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1173
+        width: 40
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 1167
+        width: 42
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 1180
+        width: 42
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 1178
+        width: 42
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1173
+        width: 42
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 950
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 950
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 1900
+        y: 953
+        width: 109
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1078
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 1464
+        y: 1078
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 1081
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 960
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 960
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 963
+        width: 85
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 548
+        width: 1018
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 550
+        width: 1018
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 281
+        width: 1018
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 281
+        width: 1018
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1018
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Level Pieces Sprite Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 0
+        width: 1018
+        height: 254
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
