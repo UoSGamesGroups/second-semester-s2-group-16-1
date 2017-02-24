@@ -202,7 +202,6 @@ public class LevelController : MonoBehaviour {
         //Output players score
         print("Player one score: " + playerOneScore);
         print("Player two score: " + playerTwoScore);
-        
     }
 
 }
