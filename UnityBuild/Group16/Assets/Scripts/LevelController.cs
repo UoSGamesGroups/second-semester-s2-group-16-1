@@ -7,13 +7,28 @@ public class LevelController : MonoBehaviour {
 
     void Start() { DontDestroyOnLoad(this); }
 
+    //--------------------------
+    // Level information
+
     int currentLevel;
     GameObject levelHolder;
-    public GameObject playerOnePrefab;
-    public GameObject PlayerTwoPrefab;
 
-    public GameObject squLevel;
-    public GameObject octLevel;
+    [Header("Level prefabs")]
+    public GameObject prefab_OctagonNeon;       //1
+    public GameObject prefab_SquareNeon;        //2
+    public GameObject prefab_SquareCaitlin;     //3
+    public GameObject prefab_SquareJohnOne;     //4
+    public GameObject prefab_SquareJohnTwo;     //5
+
+    public GameObject squLevel;                 //51
+    public GameObject octLevel;                 //52
+
+    //--------------------------
+    // Player information
+
+    [Header("Player prefabs")]
+    public GameObject prefab_playerOne;
+    public GameObject prefab_playerTwo;
 
     GameObject playerOne;
     GameObject playerTwo;
@@ -38,8 +53,8 @@ public class LevelController : MonoBehaviour {
         currentLevel = 1;
 
         //Instantiate both players
-        playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
-        playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
+        playerOne = Instantiate(prefab_playerOne, new Vector2(-5f, 0f), Quaternion.identity);
+        playerTwo = Instantiate(prefab_playerTwo, new Vector2(5f, 0f), Quaternion.identity);
 
         //Reset players scores upon loading a new level
         playerOneScore = playerTwoScore = 0;
@@ -61,8 +76,8 @@ public class LevelController : MonoBehaviour {
         currentLevel = 1;
 
         //Instantiate both players
-        playerOne = Instantiate(playerOnePrefab, new Vector2(-5f, 0f), Quaternion.identity);
-        playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(5f, 0f), Quaternion.identity);
+        playerOne = Instantiate(prefab_playerOne, new Vector2(-5f, 0f), Quaternion.identity);
+        playerTwo = Instantiate(prefab_playerTwo, new Vector2(5f, 0f), Quaternion.identity);
 
         //Reset players scores upon loading a new level
         playerOneScore = playerTwoScore = 0;
@@ -70,6 +85,8 @@ public class LevelController : MonoBehaviour {
 
     //
     //TEMPORARY CODE - END
+
+
 
     public void loadLevel(int lv)
     {
@@ -104,8 +121,8 @@ public class LevelController : MonoBehaviour {
         { Destroy(playerTwo.gameObject); }
 
         //Instantiate both players
-        playerOne = Instantiate(playerOnePrefab, new Vector2(-1f, 0f), Quaternion.identity);
-        playerTwo = Instantiate(PlayerTwoPrefab, new Vector2(1f, 0f), Quaternion.identity);
+        playerOne = Instantiate(prefab_playerOne, new Vector2(-1f, 0f), Quaternion.identity);
+        playerTwo = Instantiate(prefab_playerTwo, new Vector2(1f, 0f), Quaternion.identity);
 
         //Reset players positions
         ResetPlayers();
@@ -113,10 +130,27 @@ public class LevelController : MonoBehaviour {
         //Spawn in the new level
         switch (lv)
         {
-            case 1:
+            case 1: //Octagon neon
+                levelHolder = Instantiate(prefab_OctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 2: //Square neon
+                levelHolder = Instantiate(prefab_SquareNeon, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 3: //Square caitlin
+                levelHolder = Instantiate(prefab_SquareCaitlin, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 4: //Square John one
+                levelHolder = Instantiate(prefab_SquareJohnOne, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 5://Square John two
+                levelHolder = Instantiate(prefab_SquareJohnTwo, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+
+            //Default levels...
+            case 51: //Default Square level
                 levelHolder = Instantiate(squLevel, new Vector2(0f, 0f), Quaternion.identity);
                 break;
-            case 2:
+            case 52: //Default Octagon level
                 levelHolder = Instantiate(octLevel, new Vector2(0f, 0f), Quaternion.identity);
                 break;
             default:
@@ -138,11 +172,21 @@ public class LevelController : MonoBehaviour {
         //Reset the players positions
         switch (currentLevel)
         {
-            case 1: //Square level
+            case 1: //Octagon neon
+            case 2: //Square neon
+            case 3: //Square caitlin
+            case 4: //Square John one
+            case 5://Square John two
                 playerOne.transform.position = new Vector2(-5f, 0f);
                 playerTwo.transform.position = new Vector2(5f, 0f);
                 break;
-            case 2: //Octagon level
+
+            //Default levels...
+            case 51: //Default Square level
+                playerOne.transform.position = new Vector2(-5f, 0f);
+                playerTwo.transform.position = new Vector2(5f, 0f);
+                break;
+            case 52: //Default Octagon level
                 playerOne.transform.position = new Vector2(-4f, 0f);
                 playerTwo.transform.position = new Vector2(4f, 0f);
                 break;
@@ -158,7 +202,6 @@ public class LevelController : MonoBehaviour {
         //Output players score
         print("Player one score: " + playerOneScore);
         print("Player two score: " + playerTwoScore);
-        
     }
 
 }
