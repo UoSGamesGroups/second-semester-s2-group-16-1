@@ -13,7 +13,6 @@ public class TouchController : MonoBehaviour
     public GameObject prefabSlimeBall;
     public GameObject prefabSteelBall;
 
-    GameObject child;
     int currentBall = 1;
 
     int currentTouch;
@@ -32,7 +31,6 @@ public class TouchController : MonoBehaviour
     {
         Input.multiTouchEnabled = true;
         isPulling = mouseDown = mouseOver = clickOnBall = false;
-        child = null;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -152,14 +150,8 @@ public class TouchController : MonoBehaviour
         Vector2 playerPos = this.gameObject.transform.position;
         //Vector2 mouseUpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        //If our child isn't null (we already have an active bullet)
-        if (child != null)
-        {
-            //Destroy it
-            Destroy(child.gameObject);
-        }
-
         //Spawn our child
+        GameObject child = null;
 
         //Find the distance between the mouse upon release and the player
         float distance = Vector2.Distance(touchReleasePos, playerPos);

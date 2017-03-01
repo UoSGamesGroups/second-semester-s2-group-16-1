@@ -23,6 +23,24 @@ public class LevelController : MonoBehaviour {
     public GameObject squLevel;                 //51
     public GameObject octLevel;                 //52
 
+    [Header("Backgrounds")]
+    public Sprite whiteBackground;
+    public Sprite neonBackground;
+
+    [Header("Charlie obstacles")]
+    public GameObject prefab_obstable_expandingOctagonNeon;
+
+    [Header("Caitlin obstacles")]
+    public GameObject prefab_obstacle_caitlinSpinningCross;
+    public GameObject prefab_obstacle_caitlinExpandingCircle;
+    public GameObject prefab_obstacle_caitlinMovingPlatformOne;
+    public GameObject prefab_obstacle_caitlinMovingPlatformTwo;
+
+    [Header("Default obstacles")]
+    public GameObject prefab_obstacle_defaultSpinningFan;
+    public GameObject prefab_obstacle_defaultExpandingSquare;
+    public GameObject prefab_obstacle__defaultExpandingCircle;
+    
     //--------------------------
     // Player information
 
@@ -90,7 +108,6 @@ public class LevelController : MonoBehaviour {
 
     public void loadLevel(int lv)
     {
-
         //Change scene to the mainGame
         SceneManager.LoadScene(1);
 
@@ -128,16 +145,23 @@ public class LevelController : MonoBehaviour {
         ResetPlayers();
 
         //Spawn in the new level
+        //And change the background
         switch (lv)
         {
             case 1: //Octagon neon
                 levelHolder = Instantiate(prefab_OctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
+                Instantiate(prefab_obstable_expandingOctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
+                updateBackground(neonBackground);
                 break;
             case 2: //Square neon
                 levelHolder = Instantiate(prefab_SquareNeon, new Vector2(0f, 0f), Quaternion.identity);
+                spawnDefault();
+                updateBackground(neonBackground);
                 break;
             case 3: //Square caitlin
                 levelHolder = Instantiate(prefab_SquareCaitlin, new Vector2(0f, 0f), Quaternion.identity);
+                spawnCaitlin();
+                updateBackground(whiteBackground);
                 break;
             case 4: //Square John one
                 levelHolder = Instantiate(prefab_SquareJohnOne, new Vector2(0f, 0f), Quaternion.identity);
@@ -157,6 +181,50 @@ public class LevelController : MonoBehaviour {
                 print("ERROR: Invalid level.");
                 break;
         }
+
+    }
+    
+    void spawnCaitlin()
+    {
+        int i = Random.Range(0, 3);
+
+        switch (i)
+        {
+            case 0:
+                Instantiate(prefab_obstacle_caitlinSpinningCross, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(prefab_obstacle_caitlinMovingPlatformOne, new Vector2(-1.76f, 3.4f), Quaternion.Euler(new Vector3(0, 0, 90f)));
+                Instantiate(prefab_obstacle_caitlinMovingPlatformTwo, new Vector2(1.76f, -3.4f), Quaternion.Euler(new Vector3(0, 0, 90f)));
+                break;
+            case 2:
+            default:
+                Instantiate(prefab_obstacle_caitlinExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+        }
+    }
+
+    void updateBackground(Sprite a)
+    {
+        GameObject.Find("backgroundImage").GetComponent<SpriteRenderer>().sprite = a;
+    }
+
+    void spawnDefault()
+    {
+        int i = Random.Range(0, 3);
+        switch (i)
+        {
+            case 0:
+                Instantiate(prefab_obstacle_defaultExpandingSquare, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 1:
+                Instantiate(prefab_obstacle__defaultExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+            case 2:
+            default:
+                Instantiate(prefab_obstacle_defaultSpinningFan, new Vector2(0f, 0f), Quaternion.identity);
+                break;
+        }
     }
 
     //Reset players
@@ -173,14 +241,18 @@ public class LevelController : MonoBehaviour {
         switch (currentLevel)
         {
             case 1: //Octagon neon
+                playerOne.transform.position = new Vector2(-3.5f, 0f);
+                playerTwo.transform.position = new Vector2(3.5f, 0f);
+                break;
             case 2: //Square neon
             case 3: //Square caitlin
             case 4: //Square John one
             case 5://Square John two
-                playerOne.transform.position = new Vector2(-5f, 0f);
-                playerTwo.transform.position = new Vector2(5f, 0f);
+                playerOne.transform.position = new Vector2(-4f, 0f);
+                playerTwo.transform.position = new Vector2(4f, 0f);
                 break;
 
+            
             //Default levels...
             case 51: //Default Square level
                 playerOne.transform.position = new Vector2(-5f, 0f);
