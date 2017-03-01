@@ -6,32 +6,35 @@ using UnityEngine.SceneManagement;
 public class TouchController : MonoBehaviour
 {
 
-    Rigidbody2D rb;
-    public GameObject prefabRegularBall;
-    public GameObject prefabBalloonBall;
-    public GameObject prefabGumBall;
-    public GameObject prefabSlimeBall;
-    public GameObject prefabSteelBall;
+    GameObject gameController;
+    gameHandler gc;
+
+    GameObject levelController;
+    LevelController lc;
 
     int currentBall = 1;
 
     int currentTouch;
 
     float velocityScaleTimer;
-    public float maxScale;
-    public float scaleTimerDegrade;
+    public float maxScale; //7
+    public float scaleTimerDegrade; //0.15
+    float touchActivationDistance = 2f;
+    bool touchOnBall;
 
-    bool isPulling;
-    bool mouseDown;
-    bool mouseOver;
-    bool clickOnBall;
+    
 
     // Use this for initialization
     void Start()
     {
+        levelController = GameObject.FindGameObjectWithTag("levelController");
+        lc = levelController.GetComponent<LevelController>();
+
+        gameController = GameObject.Find("gameHandler");
+        gc = gameController.GetComponent<gameHandler>();
+
         Input.multiTouchEnabled = true;
-        isPulling = mouseDown = mouseOver = clickOnBall = false;
-        rb = GetComponent<Rigidbody2D>();
+        touchOnBall = false;
     }
 
     // Update is called once per frame
@@ -49,91 +52,51 @@ public class TouchController : MonoBehaviour
             Vector2 PlayerPos = this.gameObject.transform.position;
             Vector2 touchPos = new Vector2(0, 0);
 
-            if (clickOnBall)
-            {
-                touchPos = touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
-            }
 
-            if (!clickOnBall)
+            foreach (Touch touch in Input.touches)
             {
-                foreach (Touch touch in Input.touches)
+                if (touch.phase == TouchPhase.Began)
                 {
-                    if (touch.phase == TouchPhase.Began)
+                    touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+                    if (Vector2.Distance(touchPos, PlayerPos) < 2f)
                     {
-
-                        touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-
-                        if (Vector2.Distance(touchPos, PlayerPos) < 0.75f)
-                        {
-                            currentTouch = touch.fingerId;
-                            clickOnBall = true;
-                            break;
-                        }
+                        currentTouch = touch.fingerId;
+                        touchOnBall = true;
+                        //break;
                     }
                 }
             }
 
-
-            //Hold
-            if (Input.GetTouch(currentTouch).phase == TouchPhase.Stationary || Input.GetTouch(currentTouch).phase == TouchPhase.Moved)
+            if (touchOnBall)
             {
-
-                if (clickOnBall)
+                //Hold
+                if (Input.GetTouch(currentTouch).phase == TouchPhase.Stationary || Input.GetTouch(currentTouch).phase == TouchPhase.Moved)
                 {
-                    velocityScaleTimer -= scaleTimerDegrade;
+                    if (velocityScaleTimer >= 1)
+                    {
+                        velocityScaleTimer -= scaleTimerDegrade;
+                    }
                     touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
                 }
-            }
-            //Release
-            if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
-            {
-                if (SceneManager.GetActiveScene().buildIndex == 3)
+                //Release
+                else if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
                 {
-                    if (Vector2.Distance(PlayerPos, touchPos) < 2)
-                    {
+                    touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
 
-                        clickOnBall = false;
-
-                        GameObject canvas = GameObject.Find("Canvas");
-                        CanvasController cc = canvas.GetComponent<CanvasController>();
-
-                        if (this.gameObject.tag == "player1")
-                        {
-                            cc.showPlayerOneBallGUI(true);
-                        }
-                        else if (this.gameObject.tag == "player2")
-                        {
-                            cc.showPlayerTwoBallGUI(true);
-                        }
-                    }
-                    else
-                    {
-                        if (clickOnBall)
-                        {
-                            shoot(touchPos);
-                            clickOnBall = false;
-                        }
-                        velocityScaleTimer = maxScale;
-                    }
-                    return;
-                }
-
-                //If the finger moves enough...
-                if (Vector2.Distance(PlayerPos, touchPos) > 2)
-                {
-                    if (clickOnBall)
+                    //If the finger moves enough...
+                    if (Vector2.Distance(PlayerPos, touchPos) > touchActivationDistance)
                     {
                         shoot(touchPos);
-                        clickOnBall = false;
+                        touchOnBall = false;
+                        velocityScaleTimer = maxScale;
                     }
-                    velocityScaleTimer = maxScale;
+                    //Else if it's just a tap
+                    else
+                    {
+                        touchOnBall = false;
+                    }
                 }
-                //Else if it's just a tap
-                else if (Vector2.Distance(PlayerPos, touchPos) < 2)
-                {
-                    clickOnBall = false;
-                }
-
             }
         }
     }
@@ -159,7 +122,7 @@ public class TouchController : MonoBehaviour
         //Figure our where abouts to spawn the ball around the circle
         Vector2 difference = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y);
 
-        float spawnDist = 0.5f;
+        float spawnDist = 0.4f;
 
         //Cap
         if (difference.x > spawnDist)
@@ -175,20 +138,20 @@ public class TouchController : MonoBehaviour
         switch (currentBall)
         {
             case 1:
-                child = Instantiate(prefabBalloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_balloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 2:
-                child = Instantiate(prefabGumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_gumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 3:
-                child = Instantiate(prefabSlimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_slimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 4:
-                child = Instantiate(prefabSteelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_steelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 0:
             default:
-                child = Instantiate(prefabRegularBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_regularBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
         }
 
@@ -199,6 +162,15 @@ public class TouchController : MonoBehaviour
 
         //Reset the velocityScaleTimer
         velocityScaleTimer = maxScale;
+
+        //Add this ball to the level controllers list of balls
+        lc.currentBalls.Add(child);
+        //Remove oldest ball if we have reached limit
+        if (lc.currentBalls.Count >= 20)
+        {
+            Destroy(lc.currentBalls[0].gameObject);
+            lc.currentBalls.RemoveAt(0);
+        }
     }
 
     void OnGUI()
@@ -213,7 +185,7 @@ public class TouchController : MonoBehaviour
 
             GUI.Label(new Rect(150, 50, 100, 20), "p1 touchId: " + currentTouch);
             
-            GUI.Label(new Rect(300, 50, 150, 20), "p1: " + clickOnBall);
+            GUI.Label(new Rect(300, 50, 150, 20), "p1: " + touchOnBall);
         }
             
         if (this.gameObject.tag == "player2")
@@ -223,7 +195,7 @@ public class TouchController : MonoBehaviour
 
             GUI.Label(new Rect(150, 80, 100, 20), "p2 touchId: " + currentTouch);
 
-            GUI.Label(new Rect(300, 80, 150, 20), "p2: " + clickOnBall);
+            GUI.Label(new Rect(300, 80, 150, 20), "p2: " + touchOnBall);
         }
 
 

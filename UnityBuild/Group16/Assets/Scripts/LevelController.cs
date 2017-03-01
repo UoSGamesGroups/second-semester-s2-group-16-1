@@ -40,13 +40,19 @@ public class LevelController : MonoBehaviour {
     public GameObject prefab_obstacle_defaultSpinningFan;
     public GameObject prefab_obstacle_defaultExpandingSquare;
     public GameObject prefab_obstacle__defaultExpandingCircle;
-    
+
     //--------------------------
     // Player information
 
     [Header("Player prefabs")]
     public GameObject prefab_playerOne;
     public GameObject prefab_playerTwo;
+
+    [Header("Player sprites")]
+    public Sprite sprite_neonPlayerOne;
+    public Sprite sprite_neonPlayerTwo;
+    public Sprite sprite_caitlinPlayerOne;
+    public Sprite sprite_caitlinPlayerTwo;
 
     GameObject playerOne;
     GameObject playerTwo;
@@ -56,6 +62,11 @@ public class LevelController : MonoBehaviour {
     public int getPlayerTwoScore() { return playerTwoScore; }
     public void mutatePlayerOneScore(int i) { playerOneScore += i; }
     public void mutatePlayerTwoScore(int i) { playerTwoScore += i; }
+
+    //--------------------------
+    // Current game info
+
+    public List<GameObject> currentBalls;
 
     //TEMPORARY CODE - START
     //
@@ -140,6 +151,7 @@ public class LevelController : MonoBehaviour {
         //Instantiate both players
         playerOne = Instantiate(prefab_playerOne, new Vector2(-1f, 0f), Quaternion.identity);
         playerTwo = Instantiate(prefab_playerTwo, new Vector2(1f, 0f), Quaternion.identity);
+        loadPlayerSprites(lv);
 
         //Reset players positions
         ResetPlayers();
@@ -183,6 +195,34 @@ public class LevelController : MonoBehaviour {
         }
 
     }
+
+    void updateBackground(Sprite a)
+    {
+        GameObject.Find("backgroundImage").GetComponent<SpriteRenderer>().sprite = a;
+    }
+
+    void loadPlayerSprites(int lv)
+    {
+        switch (lv)
+        {
+            case 1: //Octagon neon
+            case 2: //Square neon
+                playerOne.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerOne;
+                playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerTwo;
+                break;
+            case 3: //Square caitlin
+                playerOne.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerOne;
+                playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerTwo;
+                break;
+            case 4: //Square John one
+            case 5://Square John two
+            //Default levels...
+            case 51: //Default Square level
+            case 52: //Default Octagon level
+            default:
+                break;
+        }
+    }
     
     void spawnCaitlin()
     {
@@ -202,11 +242,6 @@ public class LevelController : MonoBehaviour {
                 Instantiate(prefab_obstacle_caitlinExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
                 break;
         }
-    }
-
-    void updateBackground(Sprite a)
-    {
-        GameObject.Find("backgroundImage").GetComponent<SpriteRenderer>().sprite = a;
     }
 
     void spawnDefault()
@@ -230,7 +265,6 @@ public class LevelController : MonoBehaviour {
     //Reset players
     public void ResetPlayers()
     {
-
         print("currentLevel: " + currentLevel);
 
         //Grab the playerOne and playerTwo game objects
@@ -252,7 +286,6 @@ public class LevelController : MonoBehaviour {
                 playerTwo.transform.position = new Vector2(4f, 0f);
                 break;
 
-            
             //Default levels...
             case 51: //Default Square level
                 playerOne.transform.position = new Vector2(-5f, 0f);
@@ -274,6 +307,13 @@ public class LevelController : MonoBehaviour {
         //Output players score
         print("Player one score: " + playerOneScore);
         print("Player two score: " + playerTwoScore);
+
+        //Destroy all of the current balls in the level
+        foreach (GameObject ball in currentBalls)
+        {
+            Destroy(ball.gameObject);
+        }
+        currentBalls.Clear();
     }
 
 }
