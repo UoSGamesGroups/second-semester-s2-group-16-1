@@ -40,7 +40,10 @@ public class TouchController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        touchController();
+        if (!gc.gameOver)
+        {
+            touchController();
+        }
     }
 
     void touchController()

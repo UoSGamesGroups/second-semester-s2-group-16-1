@@ -122,6 +122,8 @@ public class LevelController : MonoBehaviour {
         //Change scene to the mainGame
         SceneManager.LoadScene(1);
 
+        clearBalls();
+
         //Setup level
         //This is a coroutine because we have to wait atleast one frame
         //for the scene to load before we start setting up our level
@@ -131,6 +133,9 @@ public class LevelController : MonoBehaviour {
     IEnumerator levelSetup(int lv)
     {
         yield return new WaitForSeconds(0.1f);
+
+        //Destroy any current balls in play
+
 
         //Destroy the current level
         if (levelHolder != null)
@@ -210,12 +215,12 @@ public class LevelController : MonoBehaviour {
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerTwo;
                 break;
+            case 4: //Square John one
+            case 5://Square John two
             case 3: //Square caitlin
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerTwo;
                 break;
-            case 4: //Square John one
-            case 5://Square John two
             //Default levels...
             case 51: //Default Square level
             case 52: //Default Octagon level
@@ -308,6 +313,11 @@ public class LevelController : MonoBehaviour {
         print("Player one score: " + playerOneScore);
         print("Player two score: " + playerTwoScore);
 
+        clearBalls();
+    }
+
+    void clearBalls()
+    {
         //Destroy all of the current balls in the level
         foreach (GameObject ball in currentBalls)
         {
