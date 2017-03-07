@@ -47,7 +47,7 @@ public class gameHandler : MonoBehaviour
             {
                 cc.playerWinText.text = "Player one wins!";
             }
-            else if (lc.getPlayerTwoScore() < lc.getPlayerOneScore())
+            else if (lc.getPlayerTwoScore() > lc.getPlayerOneScore())
             {
                 cc.playerWinText.text = "Player two wins!";
             }
