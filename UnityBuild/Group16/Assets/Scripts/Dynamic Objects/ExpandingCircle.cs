@@ -13,9 +13,9 @@ public class ExpandingCircle : MonoBehaviour {
 	void Start ()
     {
         gettingBigger = false;
-        stayBigger = true;
+        stayBigger = false;
         gettingSmaller = false;
-        staySmaller = false;
+        staySmaller = true;
 	}
 	
 	// Update is called once per frame

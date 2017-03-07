@@ -1,0 +1,316 @@
+fileFormatVersion: 2
+guid: 5bc6a0366b437c84397b1a385f3024a3
+timeCreated: 1488380937
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Obstacle Sprite Sheet_0
+    21300002: Obstacle Sprite Sheet_1
+    21300004: Obstacle Sprite Sheet_2
+    21300006: Obstacle Sprite Sheet_3
+    21300008: Obstacle Sprite Sheet_4
+    21300010: Obstacle Sprite Sheet_5
+    21300012: Obstacle Sprite Sheet_6
+    21300014: Obstacle Sprite Sheet_7
+    21300016: Obstacle Sprite Sheet_8
+    21300018: Obstacle Sprite Sheet_9
+    21300020: Obstacle Sprite Sheet_10
+    21300022: Obstacle Sprite Sheet_11
+    21300024: Obstacle Sprite Sheet_12
+    21300026: Obstacle Sprite Sheet_13
+    21300028: Obstacle Sprite Sheet_14
+    21300030: Obstacle Sprite Sheet_15
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 1384
+        width: 617
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 1710
+        width: 290
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 1710
+        width: 291
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 1710
+        width: 290
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 1710
+        width: 291
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 728
+        width: 617
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 716
+        width: 616
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 1096
+        width: 560
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 796
+        width: 257
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 796
+        width: 256
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 657
+        width: 560
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 617
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 500
+        width: 560
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 188
+        width: 255
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 188
+        width: 256
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Obstacle Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 40
+        width: 560
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

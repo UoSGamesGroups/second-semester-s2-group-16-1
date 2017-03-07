@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class regBulletController : MonoBehaviour
 {
-    public float secondsToLive;
+    //public float secondsToLive;
 
-    // Use this for initialization
-    void Start()
-    {
-        StartCoroutine(deathTimer());
-    }
+    //// Use this for initialization
+    //void Start()
+    //{
+    //    StartCoroutine(deathTimer());
+    //}
 
-    IEnumerator deathTimer()
-    {
-        yield return new WaitForSeconds(secondsToLive);
-        Destroy(this.gameObject);
-    }
+    //IEnumerator deathTimer()
+    //{
+    //    yield return new WaitForSeconds(secondsToLive);
+    //    Destroy(this.gameObject);
+    //}
 
 }
