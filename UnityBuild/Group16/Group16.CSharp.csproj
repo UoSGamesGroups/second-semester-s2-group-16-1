@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\LevelLayoutObstacleSpawn.cs" />
     <Compile Include="Assets\Scripts\LevelSelectCanvasController.cs" />
+    <Compile Include="Assets\Scripts\MaterialSelectCanvasController.cs" />
     <Compile Include="Assets\Scripts\PlayerTouchControllers\PlayerOneController.cs" />
     <Compile Include="Assets\Scripts\PlayerTouchControllers\PlayerTwoController.cs" />
     <Compile Include="Assets\Scripts\TouchController.cs" />

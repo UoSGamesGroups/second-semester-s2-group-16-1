@@ -7,6 +7,16 @@ public class LevelController : MonoBehaviour {
 
     void Start() { DontDestroyOnLoad(this); }
 
+    public enum LevelTerrain
+    {
+        terrain_no,
+        terrain_random,
+        terrain_dynamic,
+        terrain_ice,
+        terrain_sand,
+        terrain_rubber,
+    }
+
     //--------------------------
     // Level information
 
@@ -23,7 +33,7 @@ public class LevelController : MonoBehaviour {
     public GameObject squLevel;                 //51
     public GameObject octLevel;                 //52
 
-    [Header("Backgrounds")]
+    [Header("Level Backgrounds")]
     public Sprite whiteBackground;
     public Sprite neonBackground;
 
@@ -40,6 +50,13 @@ public class LevelController : MonoBehaviour {
     public GameObject prefab_obstacle_defaultSpinningFan;
     public GameObject prefab_obstacle_defaultExpandingSquare;
     public GameObject prefab_obstacle__defaultExpandingCircle;
+
+    [Header("Misc")]
+    public int selectedLevel;
+
+    //--------------------------
+    // Terrain information
+    [Header("Terrain sprites")]
 
     //--------------------------
     // Player information
@@ -67,61 +84,17 @@ public class LevelController : MonoBehaviour {
     // Current game info
 
     public List<GameObject> currentBalls;
+    public LevelTerrain currentTerrain;
 
-    //TEMPORARY CODE - START
-    //
-    public void loadSquSide()
-    {
-        SceneManager.LoadScene(2);
-        StartCoroutine(sideLvSetup());
-    }
-    IEnumerator sideLvSetup()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        currentLevel = 1;
-
-        //Instantiate both players
-        playerOne = Instantiate(prefab_playerOne, new Vector2(-5f, 0f), Quaternion.identity);
-        playerTwo = Instantiate(prefab_playerTwo, new Vector2(5f, 0f), Quaternion.identity);
-
-        //Reset players scores upon loading a new level
-        playerOneScore = playerTwoScore = 0;
-
-    }
-
-    //------
-
-    public void loadSquClick()
-    {
-        SceneManager.LoadScene(3);
-        StartCoroutine(clickLvSetup());
-    }
-
-    IEnumerator clickLvSetup()
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        currentLevel = 1;
-
-        //Instantiate both players
-        playerOne = Instantiate(prefab_playerOne, new Vector2(-5f, 0f), Quaternion.identity);
-        playerTwo = Instantiate(prefab_playerTwo, new Vector2(5f, 0f), Quaternion.identity);
-
-        //Reset players scores upon loading a new level
-        playerOneScore = playerTwoScore = 0;
-    }
-
-    //
-    //TEMPORARY CODE - END
-
-
+    //--------------------------
+    // Methods
 
     public void loadLevel(int lv)
     {
         //Change scene to the mainGame
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
+        //Clear any current balls in play
         clearBalls();
 
         //Setup level
@@ -132,10 +105,8 @@ public class LevelController : MonoBehaviour {
 
     IEnumerator levelSetup(int lv)
     {
+        //Wait for the next frame
         yield return new WaitForSeconds(0.1f);
-
-        //Destroy any current balls in play
-
 
         //Destroy the current level
         if (levelHolder != null)
@@ -201,9 +172,9 @@ public class LevelController : MonoBehaviour {
 
     }
 
-    void updateBackground(Sprite a)
+    void updateBackground(Sprite spr)
     {
-        GameObject.Find("backgroundImage").GetComponent<SpriteRenderer>().sprite = a;
+        GameObject.Find("backgroundImage").GetComponent<SpriteRenderer>().sprite = spr;
     }
 
     void loadPlayerSprites(int lv)
