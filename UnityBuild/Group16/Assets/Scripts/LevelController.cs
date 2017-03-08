@@ -139,12 +139,10 @@ public class LevelController : MonoBehaviour {
             case 1: //Octagon neon
                 levelHolder = Instantiate(prefab_OctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
                 Instantiate(prefab_obstable_expandingOctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
-                updateBackground(neonBackground);
                 break;
             case 2: //Square neon
                 levelHolder = Instantiate(prefab_SquareNeon, new Vector2(0f, 0f), Quaternion.identity);
                 spawnDefault();
-                updateBackground(neonBackground);
                 break;
             case 3: //Square caitlin
                 levelHolder = Instantiate(prefab_SquareCaitlin, new Vector2(0f, 0f), Quaternion.identity);

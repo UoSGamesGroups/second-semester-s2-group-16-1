@@ -76,8 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoundaryChecker.cs" />
+    <Compile Include="Assets\Scripts\Bullets\BallController.cs" />
     <Compile Include="Assets\Scripts\Bullets\gumBallController.cs" />
-    <Compile Include="Assets\Scripts\Bullets\regBulletController.cs" />
     <Compile Include="Assets\Scripts\CanvasController.cs" />
     <Compile Include="Assets\Scripts\Dynamic Objects\CaitlinLongExtender.cs" />
     <Compile Include="Assets\Scripts\Dynamic Objects\ExpandingCircle.cs" />

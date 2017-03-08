@@ -33,12 +33,15 @@ public class gameHandler : MonoBehaviour
     [Header("No terrain")]
     public Sprite terrain_empty;
 
+    [Header("Background object")]
+    public GameObject background;
+
     GameObject canvas;
     CanvasController cc;
     GameObject levelController;
     LevelController lc;
 
-    LevelController.LevelTerrain gameTerrain;
+    public LevelController.LevelTerrain gameTerrain;
     bool terrainOn;
     
     void Start()
@@ -77,7 +80,6 @@ public class gameHandler : MonoBehaviour
         }
 
         updateTerrainBG();
-        
     }
 
     void chooseRandomTerrain()
@@ -104,8 +106,8 @@ public class gameHandler : MonoBehaviour
         switch (lc.selectedLevel)
         {
             case 1:     //Neon oct
-                break;
             case 2:     //Neon squ
+                setupTerrainNeonLevels();
                 break;
             case 3:     //Caitlin squ
                 setupTerrainCaitlinSquare();
@@ -175,7 +177,16 @@ public class gameHandler : MonoBehaviour
                 updateTerrainBG();
                 yield return new WaitForSeconds(7f);
             }
+            //Update background
             updateTerrainBG();
+
+            //Update all of the balls friction values
+            foreach (GameObject ball in lc.currentBalls)
+            {
+                ball.GetComponent<BallController>().UpdateFriction();
+            }
+
+            //Repeat
             StartCoroutine(terrainTick());
         }
     }
@@ -198,17 +209,40 @@ public class gameHandler : MonoBehaviour
 
     public void returnToLevelSelect()
     {
-        //LevelController lc = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
-        //lc.currentBalls.Clear();
-
-        //gameOver = false;
-
         SceneManager.LoadScene(0);
+    }
+
+    void setupTerrainNeonLevels()
+    {
+        terrain.GetComponent<SpriteRenderer>().sprite = terrain_empty;
+
+        Debug.Log("Setting neon terrain...");
+
+        switch (gameTerrain)
+        {
+            case LevelController.LevelTerrain.terrain_ice:
+                background.GetComponent<SpriteRenderer>().sprite = charlie_terrain_ice;
+                Debug.Log("ice");
+                break;
+            case LevelController.LevelTerrain.terrain_sand:
+                background.GetComponent<SpriteRenderer>().sprite = charlie_terrain_sand;
+                Debug.Log("sand");
+                break;
+            case LevelController.LevelTerrain.terrain_rubber:
+                background.GetComponent<SpriteRenderer>().sprite = charlie_terrain_rubber;
+                Debug.Log("rubber");
+                break;
+            case LevelController.LevelTerrain.terrain_no:
+            case LevelController.LevelTerrain.terrain_dynamic:
+            default:
+                background.GetComponent<SpriteRenderer>().sprite = lc.neonBackground;
+                Debug.Log("default");
+                break;
+        }
     }
 
     void setupTerrainCaitlinSquare()
     {
-        Debug.Log("Hello");
         switch (gameTerrain)
         {
             case LevelController.LevelTerrain.terrain_ice:
