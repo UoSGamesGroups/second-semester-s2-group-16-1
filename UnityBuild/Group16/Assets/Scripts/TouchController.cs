@@ -110,7 +110,7 @@ public class TouchController : MonoBehaviour
         print(this.gameObject.tag + " currentBall: " + currentBall);
     }
 
-    void shoot(Vector2 touchReleasePos)
+    public void shoot(Vector2 touchReleasePos)
     {
         //Get the position of this object
         Vector2 playerPos = this.gameObject.transform.position;

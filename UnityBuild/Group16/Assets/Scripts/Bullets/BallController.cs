@@ -5,18 +5,17 @@ using UnityEngine;
 public class BallController : MonoBehaviour {
 
     float regularDrag;
+    float regularMass;
+    float regularBounciness;
 
 	// Use this for initialization
 	void Start ()
     {
+        regularDrag = this.GetComponent<Rigidbody2D>().drag;
+        regularMass = this.GetComponent<Rigidbody2D>().mass;
+        regularBounciness = this.GetComponent<Rigidbody2D>().sharedMaterial.bounciness;
+
         UpdateFriction();
-        regularDrag = this.GetComponent<Rigidbody2D>().angularDrag;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
 	}
 
     public void UpdateFriction()
@@ -29,14 +28,21 @@ public class BallController : MonoBehaviour {
         switch (gh.gameTerrain)
         {
             case LevelController.LevelTerrain.terrain_ice:
-                rb.angularDrag = regularDrag * 2;
+                rb.drag = regularDrag * 0.5f;
+                rb.mass = regularMass * 0.5f;
                 break;
             case LevelController.LevelTerrain.terrain_sand:
-                rb.angularDrag = regularDrag * 0.5f;
+                rb.drag = regularDrag * 2;
+                rb.mass = regularMass * 2;
+                break;
+            case LevelController.LevelTerrain.terrain_rubber:
+                rb.sharedMaterial.bounciness *= 1.1f; //10% increase
                 break;
             case LevelController.LevelTerrain.terrain_no:
             default:
-                rb.angularDrag = regularDrag;
+                rb.drag = regularDrag;
+                rb.mass = regularMass;
+                rb.sharedMaterial.bounciness = regularBounciness;
                 break;
         }
 

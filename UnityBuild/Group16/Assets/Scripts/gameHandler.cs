@@ -265,4 +265,12 @@ public class gameHandler : MonoBehaviour
                 break;
         }
     }
+
+    public void TEST_SpawnBall()
+    {
+        GameObject playerOne = GameObject.FindGameObjectWithTag("player1");
+        TouchController tc = playerOne.GetComponent<TouchController>();
+
+        tc.shoot(new Vector2(playerOne.transform.position.x + 2, playerOne.transform.position.y));
+    }
 }

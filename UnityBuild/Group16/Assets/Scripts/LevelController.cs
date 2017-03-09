@@ -282,16 +282,26 @@ public class LevelController : MonoBehaviour {
         print("Player one score: " + playerOneScore);
         print("Player two score: " + playerTwoScore);
 
-        clearBalls();
+        removeBallsFromPlay();
     }
 
-    void clearBalls()
+    void removeBallsFromPlay()
     {
         //Destroy all of the current balls in the level
         foreach (GameObject ball in currentBalls)
         {
             Destroy(ball.gameObject);
         }
+        currentBalls.Clear();
+    }
+
+    void clearBalls()
+    {
+        //Destroy all of the current balls in the level
+        //foreach (GameObject ball in currentBalls)
+        //{
+        //    Destroy(ball.gameObject);
+        //}
         currentBalls.Clear();
     }
 
