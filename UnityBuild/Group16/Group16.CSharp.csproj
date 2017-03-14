@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -67,6 +70,9 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
@@ -76,8 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoundaryChecker.cs" />
+    <Compile Include="Assets\Scripts\Bullets\BallController.cs" />
     <Compile Include="Assets\Scripts\Bullets\gumBallController.cs" />
-    <Compile Include="Assets\Scripts\Bullets\regBulletController.cs" />
     <Compile Include="Assets\Scripts\CanvasController.cs" />
     <Compile Include="Assets\Scripts\Dynamic Objects\CaitlinLongExtender.cs" />
     <Compile Include="Assets\Scripts\Dynamic Objects\ExpandingCircle.cs" />
@@ -87,6 +93,7 @@
     <Compile Include="Assets\Scripts\LevelController.cs" />
     <Compile Include="Assets\Scripts\LevelLayoutObstacleSpawn.cs" />
     <Compile Include="Assets\Scripts\LevelSelectCanvasController.cs" />
+    <Compile Include="Assets\Scripts\MaterialSelectCanvasController.cs" />
     <Compile Include="Assets\Scripts\PlayerTouchControllers\PlayerOneController.cs" />
     <Compile Include="Assets\Scripts\PlayerTouchControllers\PlayerTwoController.cs" />
     <Compile Include="Assets\Scripts\TouchController.cs" />

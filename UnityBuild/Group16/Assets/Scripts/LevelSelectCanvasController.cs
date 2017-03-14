@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelSelectCanvasController : MonoBehaviour {
    
@@ -21,6 +22,8 @@ public class LevelSelectCanvasController : MonoBehaviour {
     [Header("UI Preview Image")]
     public GameObject previewImage;
 
+    //
+    int numOfLevels = 5;
     int currentLevel;
 
 	// Use this for initialization
@@ -43,11 +46,11 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     public void increaseLevel()
     {
-        if (currentLevel < 5)
+        if (currentLevel < numOfLevels)
         {
             currentLevel++;
         }
-        else if (currentLevel == 5)
+        else if (currentLevel == numOfLevels)
         {
             currentLevel = 1;
         }
@@ -63,7 +66,7 @@ public class LevelSelectCanvasController : MonoBehaviour {
         }
         else if (currentLevel == 1)
         {
-            currentLevel = 5;
+            currentLevel = numOfLevels;
         }
 
         updatePreviewImage();
@@ -71,7 +74,8 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     public void loadLevel()
     {
-        lc.loadLevel(currentLevel);
+        lc.selectedLevel = currentLevel;
+        SceneManager.LoadScene(1);
     }
 
     void updatePreviewImage()
