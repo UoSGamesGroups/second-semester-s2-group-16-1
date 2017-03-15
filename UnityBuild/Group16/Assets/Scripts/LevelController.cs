@@ -70,6 +70,12 @@ public class LevelController : MonoBehaviour {
     public Sprite sprite_neonPlayerTwo;
     public Sprite sprite_caitlinPlayerOne;
     public Sprite sprite_caitlinPlayerTwo;
+    public Sprite sprite_johnBeaniePlayerOne;
+    public Sprite sprite_johnBeaniePlayerTwo;
+    public Sprite sprite_johnFootballPlayerOne;
+    public Sprite sprite_johnFootballPlayerTwo;
+    public Sprite sprite_johnHelmetPlayerOne;
+    public Sprite sprite_johnHelmetPlayerTwo;
 
     GameObject playerOne;
     GameObject playerTwo;
@@ -184,12 +190,19 @@ public class LevelController : MonoBehaviour {
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerTwo;
                 break;
-            case 4: //Square John one
-            case 5://Square John two
             case 3: //Square caitlin
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerTwo;
                 break;
+            case 4: //Square John one
+                playerOne.GetComponent<SpriteRenderer>().sprite = sprite_johnHelmetPlayerOne;
+                playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_johnHelmetPlayerTwo;
+                break;
+            case 5://Square John two
+                playerOne.GetComponent<SpriteRenderer>().sprite = sprite_johnBeaniePlayerOne;
+                playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_johnBeaniePlayerTwo;
+                break;
+
             //Default levels...
             case 51: //Default Square level
             case 52: //Default Octagon level
