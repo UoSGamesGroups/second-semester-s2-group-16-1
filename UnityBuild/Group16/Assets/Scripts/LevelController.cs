@@ -63,6 +63,7 @@ public class LevelController : MonoBehaviour {
     public GameObject prefab_obstacles_caitlinReactiveSpinner;
     public GameObject prefab_obstacle_caitlinFanLeft;
     public GameObject prefab_obstacle_caitlinFanRight;
+    public GameObject prefab_obstacle_caitlinElectric;
 
     [Header("Misc")]
     public int selectedLevel;
@@ -226,10 +227,8 @@ public class LevelController : MonoBehaviour {
     
     void spawnCaitlin()
     {
-
         //Should we spawn dynamic or reactive obstacles?
         int i = Random.Range(0, 2);
-
         //Dynamic
         if (i == 0)
         {
@@ -255,7 +254,7 @@ public class LevelController : MonoBehaviour {
         //Reactive
         else
         {
-            int j = Random.Range(0, 2);
+            int j = Random.Range(0, 3);
             GameObject temp;
             switch (j)
             {
@@ -264,11 +263,14 @@ public class LevelController : MonoBehaviour {
                     temp.transform.Rotate(0, 0, 90);
                     break;
                 case 1:
-                default:
                     temp = Instantiate(prefab_obstacle_caitlinFanLeft, new Vector2(-2.15f, 3.95f), Quaternion.identity);
                     temp.transform.Rotate(0, 0, -40);
                     temp = Instantiate(prefab_obstacle_caitlinFanRight, new Vector2(2.15f, -3.95f), Quaternion.identity);
                     temp.transform.Rotate(0, 0, 140);
+                    break;
+                case 2:
+                default:
+                    Instantiate(prefab_obstacle_caitlinElectric, new Vector2(0, 0), Quaternion.identity);
                     break;
             }
         }

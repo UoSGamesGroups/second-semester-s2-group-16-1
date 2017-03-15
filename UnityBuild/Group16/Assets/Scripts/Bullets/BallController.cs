@@ -49,6 +49,14 @@ public class BallController : MonoBehaviour {
         }
     }
 
+    void OnTriggerEnter2D(Collider2D tar)
+    {
+        if (tar.tag == "ballDeath")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void OnTriggerStay2D(Collider2D tar)
     {
         if (tar.tag == "caitlinFanLeft")
