@@ -51,6 +51,19 @@ public class LevelController : MonoBehaviour {
     public GameObject prefab_obstacle_defaultExpandingSquare;
     public GameObject prefab_obstacle__defaultExpandingCircle;
 
+    [Header("Charlie reactive obstacles")]
+    public GameObject prefab_obstacle_neonSpinningClub;
+    public GameObject prefab_obstacle_neonBounceCircle;
+    public GameObject prefab_obstacle_neonSemiTopLeft;
+    public GameObject prefab_obstacle_neonSemiTopRight;
+    public GameObject prefab_obstacle_neonSemiBottomRight;
+    public GameObject prefab_obstacle_neonSemiBottomLeft;
+
+    [Header("Caitlin reactive obstacles")]
+    public GameObject prefab_obstacles_caitlinReactiveSpinner;
+    public GameObject prefab_obstacle_caitlinFanLeft;
+    public GameObject prefab_obstacle_caitlinFanRight;
+
     [Header("Misc")]
     public int selectedLevel;
 
@@ -148,7 +161,7 @@ public class LevelController : MonoBehaviour {
                 break;
             case 2: //Square neon
                 levelHolder = Instantiate(prefab_SquareNeon, new Vector2(0f, 0f), Quaternion.identity);
-                spawnDefault();
+                spawnCharlie();
                 break;
             case 3: //Square caitlin
                 levelHolder = Instantiate(prefab_SquareCaitlin, new Vector2(0f, 0f), Quaternion.identity);
@@ -213,40 +226,112 @@ public class LevelController : MonoBehaviour {
     
     void spawnCaitlin()
     {
-        int i = Random.Range(0, 3);
 
-        switch (i)
+        //Should we spawn dynamic or reactive obstacles?
+        int i = Random.Range(0, 2);
+
+        //Dynamic
+        if (i == 0)
         {
-            case 0:
-                Instantiate(prefab_obstacle_caitlinSpinningCross, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-            case 1:
-                Instantiate(prefab_obstacle_caitlinMovingPlatformOne, new Vector2(-1.76f, 3.4f), Quaternion.Euler(new Vector3(0, 0, 90f)));
-                Instantiate(prefab_obstacle_caitlinMovingPlatformTwo, new Vector2(1.76f, -3.4f), Quaternion.Euler(new Vector3(0, 0, 90f)));
-                break;
-            case 2:
-            default:
-                Instantiate(prefab_obstacle_caitlinExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
-                break;
+            GameObject temp;
+            int j = Random.Range(0, 3);
+            switch (j)
+            {
+                case 0:
+                    Instantiate(prefab_obstacle_caitlinSpinningCross, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+                case 1:
+                    temp = Instantiate(prefab_obstacle_caitlinMovingPlatformOne, new Vector2(-1.76f, 3.4f), Quaternion.identity);
+                    temp.transform.Rotate(0, 0, 90);
+                    temp = Instantiate(prefab_obstacle_caitlinMovingPlatformTwo, new Vector2(1.76f, -3.4f), Quaternion.identity);
+                    temp.transform.Rotate(0, 0, 90);
+                    break;
+                case 2:
+                default:
+                    Instantiate(prefab_obstacle_caitlinExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+            }
+        }
+        //Reactive
+        else
+        {
+            int j = Random.Range(0, 2);
+            GameObject temp;
+            switch (j)
+            {
+                case 0:
+                    temp = Instantiate(prefab_obstacles_caitlinReactiveSpinner, new Vector2(0, 0), Quaternion.identity);
+                    temp.transform.Rotate(0, 0, 90);
+                    break;
+                case 1:
+                default:
+                    temp = Instantiate(prefab_obstacle_caitlinFanLeft, new Vector2(-2.15f, 3.95f), Quaternion.identity);
+                    temp.transform.Rotate(0, 0, -40);
+                    temp = Instantiate(prefab_obstacle_caitlinFanRight, new Vector2(2.15f, -3.95f), Quaternion.identity);
+                    temp.transform.Rotate(0, 0, 140);
+                    break;
+            }
         }
     }
 
-    void spawnDefault()
+    void spawnCharlie()
     {
-        int i = Random.Range(0, 3);
-        switch (i)
+        //Should we spawn dynamic or reactive obstacles?
+        int i = Random.Range(0, 2);
+
+        //Dynamic
+        if (i == 0)
         {
-            case 0:
-                Instantiate(prefab_obstacle_defaultExpandingSquare, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-            case 1:
-                Instantiate(prefab_obstacle__defaultExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-            case 2:
-            default:
-                Instantiate(prefab_obstacle_defaultSpinningFan, new Vector2(0f, 0f), Quaternion.identity);
-                break;
+            //Spawning default obstacles
+            int j = Random.Range(0, 3);
+            switch (j)
+            {
+                case 0:
+                    Instantiate(prefab_obstacle_defaultExpandingSquare, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+                case 1:
+                    Instantiate(prefab_obstacle__defaultExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+                case 2:
+                default:
+                    Instantiate(prefab_obstacle_defaultSpinningFan, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+            }
+
+            return;
         }
+        //Dynamic
+        else
+        {
+            int j = Random.Range(0, 3);
+            switch (j)
+            {
+                case 0: //Rotating club
+                    Instantiate(prefab_obstacle_neonSpinningClub, new Vector2(-3.75f, 2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSpinningClub, new Vector2(3.75f, 2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSpinningClub, new Vector2(3.75f, -2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSpinningClub, new Vector2(-3.75f, -2.9f), Quaternion.identity);
+                    break;
+                case 1: //Rotating semi circles
+                    Instantiate(prefab_obstacle_neonSemiTopLeft, new Vector2(-3.75f, 2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSemiTopRight, new Vector2(3.75f, 2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSemiBottomRight, new Vector2(3.75f, -2.9f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonSemiBottomLeft, new Vector2(-3.75f, -2.9f), Quaternion.identity);
+                    break;
+                case 2:
+                default:
+                    Instantiate(prefab_obstacle_neonBounceCircle, new Vector2(-5.5f, 3.85f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonBounceCircle, new Vector2(5.5f, 3.85f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonBounceCircle, new Vector2(5.5f, -3.85f), Quaternion.identity);
+                    Instantiate(prefab_obstacle_neonBounceCircle, new Vector2(-5.5f, -3.85f), Quaternion.identity);
+                    break;
+            }
+        }
+
+        
+
+
+
     }
 
     //Reset players

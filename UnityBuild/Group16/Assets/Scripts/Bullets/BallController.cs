@@ -8,20 +8,22 @@ public class BallController : MonoBehaviour {
     float regularMass;
     float regularBounciness;
 
-	// Use this for initialization
-	void Start ()
+    Rigidbody2D rb;
+
+    // Use this for initialization
+    void Start ()
     {
-        regularDrag = this.GetComponent<Rigidbody2D>().drag;
-        regularMass = this.GetComponent<Rigidbody2D>().mass;
-        regularBounciness = this.GetComponent<Rigidbody2D>().sharedMaterial.bounciness;
+        rb = this.GetComponent<Rigidbody2D>();
+
+        regularDrag = rb.drag;
+        regularMass = rb.mass;
+        regularBounciness = rb.sharedMaterial.bounciness;
 
         UpdateFriction();
 	}
 
     public void UpdateFriction()
     {
-        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
-
         GameObject gamehandlerObj = GameObject.Find("gameHandler");
         gameHandler gh = gamehandlerObj.GetComponent<gameHandler>();
 
@@ -45,6 +47,25 @@ public class BallController : MonoBehaviour {
                 rb.sharedMaterial.bounciness = regularBounciness;
                 break;
         }
+    }
 
+    void OnTriggerStay2D(Collider2D tar)
+    {
+        if (tar.tag == "caitlinFanLeft")
+        {
+            Vector2 currentVel = rb.velocity;
+
+            currentVel.x += 0.1f;
+
+            rb.velocity = currentVel;
+        }
+        else if (tar.tag == "caitlinFanRight")
+        {
+            Vector2 currentVel = rb.velocity;
+
+            currentVel.x -= 0.1f;
+
+            rb.velocity = currentVel;
+        }
     }
 }
