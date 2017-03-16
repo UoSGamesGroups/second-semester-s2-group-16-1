@@ -64,6 +64,7 @@ public class LevelController : MonoBehaviour {
     public GameObject prefab_obstacle_caitlinFanLeft;
     public GameObject prefab_obstacle_caitlinFanRight;
     public GameObject prefab_obstacle_caitlinElectric;
+    public GameObject prefab_obstacle_caitlinFlipper;
 
     [Header("Misc")]
     public int selectedLevel;
@@ -233,7 +234,7 @@ public class LevelController : MonoBehaviour {
         if (i == 0)
         {
             GameObject temp;
-            int j = Random.Range(0, 3);
+            int j = Random.Range(0, 4);
             switch (j)
             {
                 case 0:
@@ -246,8 +247,14 @@ public class LevelController : MonoBehaviour {
                     temp.transform.Rotate(0, 0, 90);
                     break;
                 case 2:
-                default:
                     Instantiate(prefab_obstacle_caitlinExpandingCircle, new Vector2(0f, 0f), Quaternion.identity);
+                    break;
+                case 3:
+                default:
+                    Instantiate(prefab_obstacle_caitlinFlipper, new Vector2(3f, 4.25f), Quaternion.identity);
+                    temp = Instantiate(prefab_obstacle_caitlinFlipper, new Vector2(-3f, -4.25f), Quaternion.identity);
+                    temp.gameObject.transform.Rotate(0, 0, 180);
+                    temp.gameObject.GetComponentInChildren<Flipper>().upsideDown = true;
                     break;
             }
         }
