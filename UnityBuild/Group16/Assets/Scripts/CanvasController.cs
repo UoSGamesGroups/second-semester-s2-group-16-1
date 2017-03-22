@@ -8,7 +8,8 @@ public class CanvasController : MonoBehaviour {
     [Header("Text")]
     public Text playerOneScore;
     public Text playerTwoScore;
-    public Text roundTimer;
+    public Text roundTimerLeft;
+    public Text roundTimerRight;
 
     GameObject levelController;
     LevelController lc;

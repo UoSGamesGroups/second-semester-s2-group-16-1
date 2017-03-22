@@ -60,10 +60,49 @@ public class gameHandler : MonoBehaviour
         //Grab the canvas
         canvas = GameObject.Find("Canvas");
         cc = canvas.GetComponent<CanvasController>();
-        cc.roundTimer.text = "Time: " + roundTimer;
+
+        //Setup timer placement
+        timerSetup();
 
         //Start the timer
         StartCoroutine(timerTick());
+    }
+
+    void timerSetup()
+    {
+        switch (lc.selectedLevel)
+        {
+            //Charlie
+            case 1:
+            case 2:
+                cc.roundTimerLeft.text = "Time: " + roundTimer;
+                cc.roundTimerRight.text = "Time: " + roundTimer;
+
+                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(350, 0);
+                cc.roundTimerLeft.rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
+
+                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(-350, 0);
+                cc.roundTimerLeft.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
+                break;
+            //Caitlin
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                cc.roundTimerLeft.text = "" + roundTimer;
+                cc.roundTimerRight.text = "" + roundTimer;
+
+                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(310, 0);
+                cc.roundTimerLeft.rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
+
+                cc.roundTimerRight.rectTransform.anchoredPosition = new Vector2(-310, 0);
+                cc.roundTimerRight.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
+                break;
+            default:
+                Debug.Log("ERROR");
+                    break;
+        }
     }
 
     void terrainSetup()
@@ -124,8 +163,20 @@ public class gameHandler : MonoBehaviour
     IEnumerator timerTick()
     {
         yield return new WaitForSeconds(1.0f);
+
         roundTimer--;
-        cc.roundTimer.text = "Time: " + roundTimer;
+
+        if (lc.selectedLevel == 1 || lc.selectedLevel == 2)
+        {
+            cc.roundTimerLeft.text = "Time: " + roundTimer;
+            cc.roundTimerRight.text = "Time: " + roundTimer;
+        }
+        else if (lc.selectedLevel == 3 || lc.selectedLevel == 4 || lc.selectedLevel == 5 || lc.selectedLevel == 6 || lc.selectedLevel == 7)
+        {
+            cc.roundTimerLeft.text = "" + roundTimer;
+            cc.roundTimerRight.text = "" + roundTimer;
+        }
+        
         if (roundTimer <= 0)
         {
             gameOver = true;
