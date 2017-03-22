@@ -176,48 +176,48 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    void OnGUI()
-    {
-        Vector2 playeronepos = new Vector2(0, 0);
-        Vector2 playertwopos = new Vector2(0, 0);
+    //void OnGUI()
+    //{
+    //    Vector2 playeronepos = new Vector2(0, 0);
+    //    Vector2 playertwopos = new Vector2(0, 0);
 
-        if (this.gameObject.tag == "player1")
-        {
-            playeronepos = this.gameObject.transform.position;
-            GUI.Label(new Rect(20, 20, 100, 20), "p1: " + playeronepos.x + " " + playeronepos.y);
+    //    if (this.gameObject.tag == "player1")
+    //    {
+    //        playeronepos = this.gameObject.transform.position;
+    //        GUI.Label(new Rect(20, 20, 100, 20), "p1: " + playeronepos.x + " " + playeronepos.y);
 
-            GUI.Label(new Rect(150, 50, 100, 20), "p1 touchId: " + currentTouch);
+    //        GUI.Label(new Rect(150, 50, 100, 20), "p1 touchId: " + currentTouch);
             
-            GUI.Label(new Rect(300, 50, 150, 20), "p1: " + touchOnBall);
-        }
+    //        GUI.Label(new Rect(300, 50, 150, 20), "p1: " + touchOnBall);
+    //    }
             
-        if (this.gameObject.tag == "player2")
-        {
-            playertwopos = this.gameObject.transform.position;
-            GUI.Label(new Rect(20, 50, 100, 20), "p2: " + playertwopos.x + " " + playertwopos.y);
+    //    if (this.gameObject.tag == "player2")
+    //    {
+    //        playertwopos = this.gameObject.transform.position;
+    //        GUI.Label(new Rect(20, 50, 100, 20), "p2: " + playertwopos.x + " " + playertwopos.y);
 
-            GUI.Label(new Rect(150, 80, 100, 20), "p2 touchId: " + currentTouch);
+    //        GUI.Label(new Rect(150, 80, 100, 20), "p2 touchId: " + currentTouch);
 
-            GUI.Label(new Rect(300, 80, 150, 20), "p2: " + touchOnBall);
-        }
+    //        GUI.Label(new Rect(300, 80, 150, 20), "p2: " + touchOnBall);
+    //    }
 
 
-        if (Input.touchCount > 0)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Vector2 tempTouchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
+    //    if (Input.touchCount > 0)
+    //    {
+    //        for (int i = 0; i < Input.touchCount; i++)
+    //        {
+    //            Vector2 tempTouchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
 
-                string toPrint = "touch ";
-                toPrint += i;
-                toPrint += " ";
-                toPrint += System.Math.Round(tempTouchPos.x, 2);
-                toPrint += " , ";
-                toPrint += System.Math.Round(tempTouchPos.y, 2);
+    //            string toPrint = "touch ";
+    //            toPrint += i;
+    //            toPrint += " ";
+    //            toPrint += System.Math.Round(tempTouchPos.x, 2);
+    //            toPrint += " , ";
+    //            toPrint += System.Math.Round(tempTouchPos.y, 2);
 
-                GUI.Label(new Rect(20, (50 * (i + 2)), 500, 20), toPrint );
+    //            GUI.Label(new Rect(20, (50 * (i + 2)), 500, 20), toPrint );
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }

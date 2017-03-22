@@ -12,18 +12,29 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     //Sprites
     [Header("Sprites")]
-    public Sprite sprite_octagonNeon;
-    public Sprite sprite_squareNeon;
-    public Sprite sprite_squareJohnOne;
-    public Sprite sprite_squareJohnTwo;
-    public Sprite sprite_squareCaitlinOne;
+    public Sprite sprite_octagonNeon;   //1
+    public Sprite sprite_squareNeon;    //2
+
+    public Sprite sprite_squareCaitlinOne;          //3
+    public Sprite sprite_ovalCaitlin;               //4
+    public Sprite sprite_inwardsOvalCaitlin;        //5
+    public Sprite sprite_inwardsCircleCaitlin;      //6
+    public Sprite sprite_zigzagCaitlin;             //7
+
+    public Sprite sprite_squareJohnOne; //8
+    public Sprite sprite_squareJohnTwo; //9
+
+
+    
+
+    //Caitlin new
+    
 
     //UI Images
     [Header("UI Preview Image")]
     public GameObject previewImage;
 
-    //
-    int numOfLevels = 5;
+    int numOfLevels = 9;
     int currentLevel;
 
 	// Use this for initialization
@@ -92,14 +103,25 @@ public class LevelSelectCanvasController : MonoBehaviour {
                 previewImage.GetComponent<Image>().sprite = sprite_squareCaitlinOne;
                 break;
             case 4:
-                previewImage.GetComponent<Image>().sprite = sprite_squareJohnOne;
+                previewImage.GetComponent<Image>().sprite = sprite_ovalCaitlin;
                 break;
             case 5:
+                previewImage.GetComponent<Image>().sprite = sprite_inwardsOvalCaitlin;
+                break;
+            case 6:
+                previewImage.GetComponent<Image>().sprite = sprite_inwardsCircleCaitlin;
+                break;
+            case 7:
+                previewImage.GetComponent<Image>().sprite = sprite_zigzagCaitlin;
+                break;
+            case 8:
+                previewImage.GetComponent<Image>().sprite = sprite_squareJohnOne;
+                break;
+            case 9:
                 previewImage.GetComponent<Image>().sprite = sprite_squareJohnTwo;
                 break;
             default:
                 break;
         }
     }
-
 }

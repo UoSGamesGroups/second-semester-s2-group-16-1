@@ -48,8 +48,10 @@ public class CanvasController : MonoBehaviour {
 
     public void UpdatePlayerScore()
     {
-        playerOneScore.text = "Score: " + lc.getPlayerOneScore();
-        playerTwoScore.text = "Score: " + lc.getPlayerTwoScore();
+        playerOneScore.text = lc.getPlayerOneScore() + "-" + lc.getPlayerTwoScore();
+        playerTwoScore.text = lc.getPlayerTwoScore() + "-" + lc.getPlayerOneScore();
+        //playerOneScore.text = "Score: " + lc.getPlayerOneScore();
+        //playerTwoScore.text = "Score: " + lc.getPlayerTwoScore();
     }
 
     public void showPlayerOneBallGUI(bool b)
