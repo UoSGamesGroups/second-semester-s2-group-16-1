@@ -17,12 +17,10 @@ public class TouchController : MonoBehaviour
     int currentTouch;
 
     float velocityScaleTimer;
-    public float maxScale; //7
+    static float maxScale = 10.5f; //7
     public float scaleTimerDegrade; //0.15
     float touchActivationDistance = 2f;
     bool touchOnBall;
-
-    
 
     // Use this for initialization
     void Start()
