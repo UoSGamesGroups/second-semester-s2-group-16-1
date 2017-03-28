@@ -41,7 +41,6 @@ public class ExpandingCircle : MonoBehaviour {
             staySmaller = false;
             StartCoroutine(waitStaySmaller());
         }
-		
 	}
 
     IEnumerator waitGettingBigger()

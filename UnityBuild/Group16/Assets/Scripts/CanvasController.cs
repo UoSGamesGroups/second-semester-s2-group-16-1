@@ -8,7 +8,8 @@ public class CanvasController : MonoBehaviour {
     [Header("Text")]
     public Text playerOneScore;
     public Text playerTwoScore;
-    public Text roundTimer;
+    public Text roundTimerLeft;
+    public Text roundTimerRight;
 
     GameObject levelController;
     LevelController lc;
@@ -48,8 +49,10 @@ public class CanvasController : MonoBehaviour {
 
     public void UpdatePlayerScore()
     {
-        playerOneScore.text = "Score: " + lc.getPlayerOneScore();
-        playerTwoScore.text = "Score: " + lc.getPlayerTwoScore();
+        playerOneScore.text = lc.getPlayerOneScore() + "-" + lc.getPlayerTwoScore();
+        playerTwoScore.text = lc.getPlayerTwoScore() + "-" + lc.getPlayerOneScore();
+        //playerOneScore.text = "Score: " + lc.getPlayerOneScore();
+        //playerTwoScore.text = "Score: " + lc.getPlayerTwoScore();
     }
 
     public void showPlayerOneBallGUI(bool b)
