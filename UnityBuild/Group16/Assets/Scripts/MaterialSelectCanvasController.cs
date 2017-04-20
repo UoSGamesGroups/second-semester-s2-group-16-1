@@ -19,10 +19,10 @@ public class MaterialSelectCanvasController : MonoBehaviour {
     public Sprite sprite_rubberTerrain;
 
     [Header("UI Preview Image")]
-    public GameObject previewImage;
+    public GameObject terrainPreviewImage;
 
 
-    int numberOfOptions = 6;
+    int numberOfTerrains = 6;
     int currentTerrain;
 
 	// Use this for initialization
@@ -44,16 +44,16 @@ public class MaterialSelectCanvasController : MonoBehaviour {
 	
     public void increaseTerrain()
     {
-        if (currentTerrain < numberOfOptions)
+        if (currentTerrain < numberOfTerrains)
         {
             currentTerrain++;
         }
-        else if (currentTerrain == numberOfOptions)
+        else if (currentTerrain == numberOfTerrains)
         {
             currentTerrain = 1;
         }
 
-        updatePreviewImage();
+        updateTerrainPreviewImage();
     }
 
     public void decreaseTerrain()
@@ -64,10 +64,10 @@ public class MaterialSelectCanvasController : MonoBehaviour {
         }
         else if (currentTerrain == 1)
         {
-            currentTerrain = numberOfOptions;
+            currentTerrain = numberOfTerrains;
         }
 
-        updatePreviewImage();
+        updateTerrainPreviewImage();
     }
 
     public void loadLevel()
@@ -102,27 +102,27 @@ public class MaterialSelectCanvasController : MonoBehaviour {
         lc.loadLevel(lc.selectedLevel);
     }
 
-    void updatePreviewImage()
+    void updateTerrainPreviewImage()
     {
         switch (currentTerrain)
         {
             case 1:
-                previewImage.GetComponent<Image>().sprite = sprite_noTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_noTerrain;
                 break;
             case 2:
-                previewImage.GetComponent<Image>().sprite = sprite_dynamicTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_dynamicTerrain;
                 break;
             case 3:
-                previewImage.GetComponent<Image>().sprite = sprite_randomTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_randomTerrain;
                 break;
             case 4:
-                previewImage.GetComponent<Image>().sprite = sprite_iceTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_iceTerrain;
                 break;
             case 5:
-                previewImage.GetComponent<Image>().sprite = sprite_sandTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_sandTerrain;
                 break;
             case 6:
-                previewImage.GetComponent<Image>().sprite = sprite_rubberTerrain;
+                terrainPreviewImage.GetComponent<Image>().sprite = sprite_rubberTerrain;
                 break;
             default:
                 break;
