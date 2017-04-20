@@ -121,7 +121,7 @@ public class TouchController : MonoBehaviour
         float distance = Vector2.Distance(touchReleasePos, playerPos);
 
         //Figure our where abouts to spawn the ball around the circle
-        Vector2 difference = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y);
+        Vector2 difference = new Vector2(touchReleasePos.x - playerPos.x, touchReleasePos.y - playerPos.y);
 
         float spawnDist = 0.4f;
 
@@ -157,7 +157,7 @@ public class TouchController : MonoBehaviour
         }
 
         //Give it velocity relative to how quickly you released
-        Vector2 ballVel = new Vector2(touchReleasePos.x - playerPos.x, touchReleasePos.y - playerPos.y).normalized;
+        Vector2 ballVel = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y).normalized;
         ballVel *= (velocityScaleTimer + distance);
         child.GetComponent<Rigidbody2D>().AddForce(ballVel, ForceMode2D.Impulse);
 
