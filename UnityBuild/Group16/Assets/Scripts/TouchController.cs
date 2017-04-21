@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class TouchController : MonoBehaviour
 {
-
     GameObject gameController;
     gameHandler gc;
 
     GameObject levelController;
     LevelController lc;
+
+    LineRenderer lineRenderer;
 
     int currentBall = 1;
 
@@ -33,6 +34,9 @@ public class TouchController : MonoBehaviour
 
         Input.multiTouchEnabled = true;
         touchOnBall = false;
+
+        lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
     }
 
     // Update is called once per frame
@@ -71,6 +75,42 @@ public class TouchController : MonoBehaviour
 
             if (touchOnBall)
             {
+                //Get the touch position
+                touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
+
+                //--------------------
+                // Line renderer logic
+
+                //Turn line renderer on
+                lineRenderer.enabled = true;
+
+                //Line beginning position
+                Vector2 beginningPosition = this.transform.position;
+
+
+                //Calculate the ending position
+                //Cap the length of the line
+                Vector2 difference = new Vector3(touchPos.x - beginningPosition.x, touchPos.y - PlayerPos.y);
+
+                float lineDist = 5f;
+                if (difference.x > lineDist)
+                { difference = new Vector2(lineDist, difference.y); }
+                if (difference.x < -lineDist)
+                { difference = new Vector2(-lineDist, difference.y); }
+                if (difference.y > lineDist)
+                { difference = new Vector2(difference.x, lineDist); }
+                if (difference.y < -lineDist)
+                { difference = new Vector2(difference.x, -lineDist); }
+
+                Vector2 endDist = new Vector2(beginningPosition.x - difference.x, beginningPosition.y - difference.y);
+            
+                //Set positions
+                lineRenderer.SetPosition(0, beginningPosition);
+                lineRenderer.SetPosition(1, endDist);
+
+                //--------------------
+                // Touch logic
+
                 //Hold
                 if (Input.GetTouch(currentTouch).phase == TouchPhase.Stationary || Input.GetTouch(currentTouch).phase == TouchPhase.Moved)
                 {
@@ -78,12 +118,12 @@ public class TouchController : MonoBehaviour
                     {
                         velocityScaleTimer -= scaleTimerDegrade;
                     }
-                    touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
+                    //touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
                 }
                 //Release
                 else if (Input.GetTouch(currentTouch).phase == TouchPhase.Ended)
                 {
-                    touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
+                    //touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(currentTouch).position);
 
                     //If the finger moves enough...
                     if (Vector2.Distance(PlayerPos, touchPos) > touchActivationDistance)
@@ -97,6 +137,9 @@ public class TouchController : MonoBehaviour
                     {
                         touchOnBall = false;
                     }
+
+                    //Upon finger release, turn off line renderer...
+                    lineRenderer.enabled = false;
                 }
             }
         }
@@ -121,7 +164,7 @@ public class TouchController : MonoBehaviour
         float distance = Vector2.Distance(touchReleasePos, playerPos);
 
         //Figure our where abouts to spawn the ball around the circle
-        Vector2 difference = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y);
+        Vector2 difference = new Vector2(touchReleasePos.x - playerPos.x, touchReleasePos.y - playerPos.y);
 
         float spawnDist = 0.4f;
 
@@ -157,7 +200,7 @@ public class TouchController : MonoBehaviour
         }
 
         //Give it velocity relative to how quickly you released
-        Vector2 ballVel = new Vector2(touchReleasePos.x - playerPos.x, touchReleasePos.y - playerPos.y).normalized;
+        Vector2 ballVel = new Vector2(playerPos.x - touchReleasePos.x, playerPos.y - touchReleasePos.y).normalized;
         ballVel *= (velocityScaleTimer + distance);
         child.GetComponent<Rigidbody2D>().AddForce(ballVel, ForceMode2D.Impulse);
 
