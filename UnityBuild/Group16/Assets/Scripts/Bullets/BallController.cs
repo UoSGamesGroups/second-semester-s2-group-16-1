@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour {
 
+    public enum ballType
+    {
+        none,
+        balloon,
+        steel,
+        gum,
+        slime,
+        fire,
+        smoke
+    }
+
     float regularDrag;
     float regularMass;
     float regularBounciness;
