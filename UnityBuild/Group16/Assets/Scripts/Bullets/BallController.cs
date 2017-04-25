@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour {
 
+    public enum ballType
+    {
+        none,
+        balloon,
+        steel,
+        gum,
+        slime,
+        fire,
+        smoke
+    }
+
     float regularDrag;
     float regularMass;
     float regularBounciness;
@@ -74,6 +85,15 @@ public class BallController : MonoBehaviour {
             currentVel.x -= 0.1f;
 
             rb.velocity = currentVel;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D tar)
+    {
+        //Play our hit sound when we hit into either player or a wall
+        if (tar.gameObject.name == "player1" || tar.gameObject.name == "player2" || tar.gameObject.name != "ball")
+        {
+            this.gameObject.GetComponent<AudioSource>().Play();
         }
     }
 }

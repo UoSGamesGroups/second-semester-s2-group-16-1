@@ -15,23 +15,26 @@ public class CanvasController : MonoBehaviour {
     LevelController lc;
 
     [Header("Left buttons")]
-    public GameObject playerOneBallBG;
-    public GameObject playerOneBalloonButton;
-    public GameObject playerOneGumButton;
-    public GameObject playerOneSlimeButton;
-    public GameObject playerOneSteelButton;
+    GameObject playerOneBallBG;
+    public GameObject[] playerOneButtons;
+
 
     [Header("Right buttons")]
-    public GameObject playerTwoBallBG;
-    public GameObject playerTwoBalloonButton;
-    public GameObject playerTwoGumButton;
-    public GameObject playerTwoSlimeButton;
-    public GameObject playerTwoSteelButton;
+    GameObject playerTwoBallBG;
+    public GameObject[] playerTwoButtons;
 
     [Header("Player win objects")]
     public GameObject playerWinBackground;
     public Text playerWinText;
     public GameObject playerWinButton;
+
+    [Header("Button sprites")]
+    public Sprite sprite_balloon;
+    public Sprite sprite_steel;
+    public Sprite sprite_gum;
+    public Sprite sprite_slime;
+    public Sprite sprite_fire;
+    public Sprite sprite_smoke;
 
     // Use this for initialization
     void Start ()
@@ -43,9 +46,28 @@ public class CanvasController : MonoBehaviour {
         playerWinText.text = "";
         playerWinButton.SetActive(false);
 
+        for (int i = 0; i < playerOneButtons.Length; i++)
+        {
+            if (lc.player1Balls[i] == BallController.ballType.balloon) playerOneButtons[i].GetComponent<Image>().sprite = sprite_balloon;
+            else if (lc.player1Balls[i] == BallController.ballType.steel) playerOneButtons[i].GetComponent<Image>().sprite = sprite_steel;
+            else if (lc.player1Balls[i] == BallController.ballType.gum) playerOneButtons[i].GetComponent<Image>().sprite = sprite_gum;
+            else if (lc.player1Balls[i] == BallController.ballType.slime) playerOneButtons[i].GetComponent<Image>().sprite = sprite_slime;
+            else if (lc.player1Balls[i] == BallController.ballType.fire) playerOneButtons[i].GetComponent<Image>().sprite = sprite_fire;
+            else if (lc.player1Balls[i] == BallController.ballType.smoke) playerOneButtons[i].GetComponent<Image>().sprite = sprite_smoke;
+        }
+        for (int i = 0; i < playerTwoButtons.Length; i++)
+        {
+            if (lc.player2Balls[i] == BallController.ballType.balloon) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_balloon;
+            else if (lc.player2Balls[i] == BallController.ballType.steel) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_steel;
+            else if (lc.player2Balls[i] == BallController.ballType.gum) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_gum;
+            else if (lc.player2Balls[i] == BallController.ballType.slime) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_slime;
+            else if (lc.player2Balls[i] == BallController.ballType.fire) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_fire;
+            else if (lc.player2Balls[i] == BallController.ballType.smoke) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_smoke;
+        }
+
         //showPlayerOneBallGUI(false);
         //showPlayerTwoBallGUI(false);
-	}
+    }
 
     public void UpdatePlayerScore()
     {
@@ -63,10 +85,10 @@ public class CanvasController : MonoBehaviour {
             {
                 playerOneBallBG.SetActive(true);
             }
-            playerOneBalloonButton.SetActive(true);
-            playerOneGumButton.SetActive(true);
-            playerOneSlimeButton.SetActive(true);
-            playerOneSteelButton.SetActive(true);
+            foreach (GameObject button in playerOneButtons)
+            {
+                button.SetActive(true);
+            }
         }
         else
         {
@@ -74,10 +96,10 @@ public class CanvasController : MonoBehaviour {
             {
                 playerOneBallBG.SetActive(false);
             }
-            playerOneBalloonButton.SetActive(false);
-            playerOneGumButton.SetActive(false);
-            playerOneSlimeButton.SetActive(false);
-            playerOneSteelButton.SetActive(false);
+            foreach (GameObject button in playerOneButtons)
+            {
+                button.SetActive(false);
+            }
         }
     }
 
@@ -89,10 +111,10 @@ public class CanvasController : MonoBehaviour {
             {
                 playerTwoBallBG.SetActive(true);
             }
-            playerTwoBalloonButton.SetActive(true);
-            playerTwoGumButton.SetActive(true);
-            playerTwoSlimeButton.SetActive(true);
-            playerTwoSteelButton.SetActive(true);
+            foreach (GameObject button in playerTwoButtons)
+            {
+                button.SetActive(true);
+            }
         }
         else
         {
@@ -100,10 +122,10 @@ public class CanvasController : MonoBehaviour {
             {
                 playerTwoBallBG.SetActive(false);
             }
-            playerTwoBalloonButton.SetActive(false);
-            playerTwoGumButton.SetActive(false);
-            playerTwoSlimeButton.SetActive(false);
-            playerTwoSteelButton.SetActive(false);
+            foreach (GameObject button in playerTwoButtons)
+            {
+                button.SetActive(false);
+            }
         }
         
     }

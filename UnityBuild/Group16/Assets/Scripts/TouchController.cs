@@ -185,13 +185,19 @@ public class TouchController : MonoBehaviour
                 child = Instantiate(gc.prefab_balloonBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 2:
-                child = Instantiate(gc.prefab_gumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_steelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 3:
-                child = Instantiate(gc.prefab_slimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_gumBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 4:
-                child = Instantiate(gc.prefab_steelBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                child = Instantiate(gc.prefab_slimeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 5:
+                child = Instantiate(gc.prefab_fireBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
+                break;
+            case 6:
+                child = Instantiate(gc.prefab_smokeBall, new Vector2(playerPos.x - difference.x, playerPos.y - difference.y), Quaternion.identity);
                 break;
             case 0:
             default:

@@ -5,7 +5,14 @@ using UnityEngine.SceneManagement; //For SceneManager.LoadScene
 
 public class LevelController : MonoBehaviour {
 
-    void Start() { DontDestroyOnLoad(this); }
+    void Start()
+    {
+        player1Balls = new BallController.ballType[3] { BallController.ballType.none, BallController.ballType.none, BallController.ballType.none };
+        player2Balls = new BallController.ballType[3] { BallController.ballType.none, BallController.ballType.none, BallController.ballType.none };
+        DontDestroyOnLoad(this);
+    }
+
+
 
     public enum LevelTerrain
     {
@@ -98,6 +105,10 @@ public class LevelController : MonoBehaviour {
     public Sprite sprite_johnHelmetPlayerOne;
     public Sprite sprite_johnHelmetPlayerTwo;
 
+    [Header("Player selected balls")]
+    public BallController.ballType[] player1Balls; //= new BallController.ballType[3] { BallController.ballType.none, BallController.ballType.none, BallController.ballType.none };
+    public BallController.ballType[] player2Balls; //= new BallController.ballType[3] { BallController.ballType.none, BallController.ballType.none, BallController.ballType.none };
+
     GameObject playerOne;
     GameObject playerTwo;
     int playerOneScore;
@@ -116,7 +127,9 @@ public class LevelController : MonoBehaviour {
     //--------------------------
     // Methods
 
-    public void loadLevel(int lv)
+    public void a() { }
+
+    public void loadGame(int lv)
     {
         //Change scene to the mainGame
         SceneManager.LoadScene(2);
@@ -128,6 +141,36 @@ public class LevelController : MonoBehaviour {
         //This is a coroutine because we have to wait atleast one frame
         //for the scene to load before we start setting up our level
         StartCoroutine(levelSetup(lv));
+    }
+
+    public void loadLevel(int lv)
+    {
+        //Set selected balls all to empty
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.Log(i);
+            player1Balls[i] = BallController.ballType.none;
+            player2Balls[i] = BallController.ballType.none;
+        }
+
+        //Change scene to the ballSelect
+        SceneManager.LoadScene(3);
+    }
+
+    public void updatePlayerBall(int player, int ball, BallController.ballType type)
+    {
+        switch (player)
+        {
+            case 1:
+                player1Balls[ball] = type;
+                break;
+            case 2:
+                player2Balls[ball] = type;
+                break;
+            default:
+                Debug.Log("Error setting player ball.");
+                break;
+        }
     }
 
     IEnumerator levelSetup(int lv)
@@ -443,7 +486,7 @@ public class LevelController : MonoBehaviour {
         currentBalls.Clear();
     }
 
-    void clearBalls()
+    public void clearBalls()
     {
         //Destroy all of the current balls in the level
         //foreach (GameObject ball in currentBalls)

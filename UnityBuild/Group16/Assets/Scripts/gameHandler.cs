@@ -13,6 +13,8 @@ public class gameHandler : MonoBehaviour
     public GameObject prefab_gumBall;
     public GameObject prefab_slimeBall;
     public GameObject prefab_steelBall;
+    public GameObject prefab_fireBall;
+    public GameObject prefab_smokeBall;
 
     [Header("Round timer")]
     public int roundTimer;
@@ -78,11 +80,11 @@ public class gameHandler : MonoBehaviour
                 cc.roundTimerLeft.text = "Time: " + roundTimer;
                 cc.roundTimerRight.text = "Time: " + roundTimer;
 
-                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(350, 0);
+                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(350, -140);
                 cc.roundTimerLeft.rectTransform.localRotation = Quaternion.Euler(0, 0, 90);
 
-                cc.roundTimerLeft.rectTransform.anchoredPosition = new Vector2(-350, 0);
-                cc.roundTimerLeft.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
+                cc.roundTimerRight.rectTransform.anchoredPosition = new Vector2(-350, 140);
+                cc.roundTimerRight.rectTransform.localRotation = Quaternion.Euler(0, 0, -90);
                 break;
             //Caitlin
             case 3:
@@ -247,7 +249,8 @@ public class gameHandler : MonoBehaviour
         GameObject playerOne = GameObject.FindGameObjectWithTag("player1");
         TouchController tc = playerOne.GetComponent<TouchController>();
 
-        tc.selectBall(ball);
+        int type = (int)lc.player1Balls[ball-1];
+        tc.selectBall(type);
     }
 
     public void setCurrentBallTwo(int ball)
@@ -255,7 +258,8 @@ public class gameHandler : MonoBehaviour
         GameObject playerTwo = GameObject.FindGameObjectWithTag("player2");
         TouchController tc = playerTwo.GetComponent<TouchController>();
 
-        tc.selectBall(ball);
+        int type = (int)lc.player2Balls[ball-1];
+        tc.selectBall(type);
     }
 
     public void returnToLevelSelect()
