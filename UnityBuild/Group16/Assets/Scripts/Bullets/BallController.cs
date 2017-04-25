@@ -87,4 +87,13 @@ public class BallController : MonoBehaviour {
             rb.velocity = currentVel;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D tar)
+    {
+        //Play our hit sound when we hit into either player or a wall
+        if (tar.gameObject.name == "player1" || tar.gameObject.name == "player2" || tar.gameObject.name != "ball")
+        {
+            this.gameObject.GetComponent<AudioSource>().Play();
+        }
+    }
 }
