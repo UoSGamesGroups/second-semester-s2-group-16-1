@@ -20,9 +20,6 @@ public class BallSelectorCanvasController : MonoBehaviour {
     public Sprite sprite_ball_fire;
     public Sprite sprite_ball_smoke;
 
-    [Header("Information")]
-    int a;
-
     [Header("Misc")]
     LevelController lc;
 
