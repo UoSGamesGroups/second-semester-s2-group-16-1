@@ -15,23 +15,14 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     //Sprites
     [Header("Level sprites")]
-    public Sprite sprite_octagonNeon;   //1
-    public Sprite sprite_squareNeon;    //2
 
-    public Sprite sprite_squareCaitlinOne;          //3
-    public Sprite sprite_ovalCaitlin;               //4
-    public Sprite sprite_inwardsOvalCaitlin;        //5
-    public Sprite sprite_inwardsCircleCaitlin;      //6
-    public Sprite sprite_zigzagCaitlin;             //7
-
-    public Sprite sprite_squareJohnOne; //8
-    public Sprite sprite_squareJohnTwo; //9
+    public Sprite[] spriteContainer;
 
     //UI Images
     [Header("Level UI Preview Image")]
     public GameObject levelPreviewImage;
 
-    int numOfLevels = 9;
+    int numOfLevels = 19;
     int currentLevel;
 
     //-----------------
@@ -68,7 +59,7 @@ public class LevelSelectCanvasController : MonoBehaviour {
         levelController = GameObject.Find("LevelController");
         lc = levelController.GetComponent<LevelController>();
 
-        currentLevel = 1;
+        currentLevel = 0;
         currentTerrain = 1;
     }
 
@@ -91,11 +82,11 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     public void decreaseLevel()
     {
-        if (currentLevel > 1)
+        if (currentLevel > 0)
         {
             currentLevel--;
         }
-        else if (currentLevel == 1)
+        else if (currentLevel == 0)
         {
             currentLevel = numOfLevels;
         }
@@ -105,38 +96,7 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     void updateLevelPreviewImage()
     {
-        switch (currentLevel)
-        {
-            case 1:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_octagonNeon;
-                break;
-            case 2:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_squareNeon;
-                break;
-            case 3:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_squareCaitlinOne;
-                break;
-            case 4:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_ovalCaitlin;
-                break;
-            case 5:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_inwardsOvalCaitlin;
-                break;
-            case 6:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_inwardsCircleCaitlin;
-                break;
-            case 7:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_zigzagCaitlin;
-                break;
-            case 8:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_squareJohnOne;
-                break;
-            case 9:
-                levelPreviewImage.GetComponent<Image>().sprite = sprite_squareJohnTwo;
-                break;
-            default:
-                break;
-        }
+        levelPreviewImage.GetComponent<Image>().sprite = spriteContainer[currentLevel];
     }
 
     //--------------------------------
@@ -158,11 +118,11 @@ public class LevelSelectCanvasController : MonoBehaviour {
 
     public void decreaseTerrain()
     {
-        if (currentTerrain > 1)
+        if (currentTerrain > 0)
         {
             currentTerrain--;
         }
-        else if (currentTerrain == 1)
+        else if (currentTerrain == 0)
         {
             currentTerrain = numberOfTerrains;
         }

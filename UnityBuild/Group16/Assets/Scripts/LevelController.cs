@@ -12,8 +12,6 @@ public class LevelController : MonoBehaviour {
         DontDestroyOnLoad(this);
     }
 
-
-
     public enum LevelTerrain
     {
         terrain_no,
@@ -31,20 +29,8 @@ public class LevelController : MonoBehaviour {
     GameObject levelHolder;
 
     [Header("Level prefabs")]
-    public GameObject prefab_OctagonNeon;       //1
-    public GameObject prefab_SquareNeon;        //2
 
-    public GameObject prefab_SquareCaitlin;         //3
-    public GameObject prefab_ovalCaitlin;           //4
-    public GameObject prefab_inwardsOvalCaitlin;    //5
-    public GameObject prefabs_inwardsCircleCaitlin; //6
-    public GameObject prefab_zigzagCaitlin;         //7
-
-    public GameObject prefab_SquareJohnOne;     //8
-    public GameObject prefab_SquareJohnTwo;     //9
-
-    public GameObject squLevel;                 //51
-    public GameObject octLevel;                 //52
+    public GameObject[] levelPrefabs;
 
     [Header("Level Backgrounds")]
     public Sprite whiteBackground;
@@ -203,65 +189,32 @@ public class LevelController : MonoBehaviour {
         ResetPlayers();
 
         //Spawn in the new level
-        //And change the background
+        if (lv < 20) levelHolder = Instantiate(levelPrefabs[lv], new Vector2(0.0f, 0.0f), Quaternion.identity);
         switch (lv)
         {
-
-                //Charlie
             case 1:
-                levelHolder = Instantiate(prefab_OctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
                 Instantiate(prefab_obstable_expandingOctagonNeon, new Vector2(0f, 0f), Quaternion.identity);
                 break;
             case 2:
-                levelHolder = Instantiate(prefab_SquareNeon, new Vector2(0f, 0f), Quaternion.identity);
                 spawnCharlie();
                 break;
-
-            
-                //Caitlin
             case 3:
-                levelHolder = Instantiate(prefab_SquareCaitlin, new Vector2(0f, 0f), Quaternion.identity);
-                spawnCaitlin(0);
-                //updateBackground(whiteBackground);
-                break;
             case 4:
-                levelHolder = Instantiate(prefab_ovalCaitlin, new Vector2(0f, 0f), Quaternion.identity);
                 spawnCaitlin(0);
                 break;
-
-            case 5:
-                levelHolder = Instantiate(prefab_inwardsOvalCaitlin, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-
             case 6:
-                levelHolder = Instantiate(prefabs_inwardsCircleCaitlin, new Vector2(0f, 0f), Quaternion.identity);
                 spawnCaitlin(1);
                 break;
-
-            case 7:
-                levelHolder = Instantiate(prefab_zigzagCaitlin, new Vector2(0f, 0f), Quaternion.identity);
+            case 51:
+                levelHolder = Instantiate(levelPrefabs[0], new Vector2(0f, 0f), Quaternion.identity);
                 break;
-
-                //John
-            case 8:
-                levelHolder = Instantiate(prefab_SquareJohnOne, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-            case 9:
-                levelHolder = Instantiate(prefab_SquareJohnTwo, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-
-            //Default levels...
-            case 51: //Default Square level
-                levelHolder = Instantiate(squLevel, new Vector2(0f, 0f), Quaternion.identity);
-                break;
-            case 52: //Default Octagon level
-                levelHolder = Instantiate(octLevel, new Vector2(0f, 0f), Quaternion.identity);
+            case 52:
+                levelHolder = Instantiate(levelPrefabs[1], new Vector2(0f, 0f), Quaternion.identity);
                 break;
             default:
-                print("ERROR: Invalid level.");
+                Debug.Log("Error with level selected.");
                 break;
         }
-
     }
 
     void updateBackground(Sprite spr)
@@ -273,29 +226,41 @@ public class LevelController : MonoBehaviour {
     {
         switch (lv)
         {
-                //John
-            case 1: //Octagon neon
-            case 2: //Square neon
+            //Charlie
+            case 0: //Octagon neon
+            case 1: //Square neon
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_neonPlayerTwo;
                 break;
 
                 //Caitlin
+            case 2:
             case 3:
             case 4:
             case 5:
             case 6:
-            case 7:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_caitlinPlayerTwo;
                 break;
 
-                //John
-            case 8:
+            //John
+            case 7:
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_johnHelmetPlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_johnHelmetPlayerTwo;
                 break;
-            case 9:
+
+            case 8:
                 playerOne.GetComponent<SpriteRenderer>().sprite = sprite_johnBeaniePlayerOne;
                 playerTwo.GetComponent<SpriteRenderer>().sprite = sprite_johnBeaniePlayerTwo;
                 break;
@@ -434,19 +399,30 @@ public class LevelController : MonoBehaviour {
         //Reset the players positions
         switch (currentLevel)
         {
-            case 1: //Octagon neon
+            case 0: //Octagon neon
                 playerOne.transform.position = new Vector2(-3.5f, 0f);
                 playerTwo.transform.position = new Vector2(3.5f, 0f);
                 break;
 
-            case 2: //Square neon
-            case 3: //Square caitlin
-            case 4: //Caitlin new 1
-            case 5: //Caitlin new 2
-            case 6: //Caitlin new 3
-            case 7: //Caitlin new 4
-            case 8: //Square John one
-            case 9://Square John two
+            case 1: //Square neon
+            case 2: //Square caitlin
+            case 3: //Caitlin new 1
+            case 4: //Caitlin new 2
+            case 5: //Caitlin new 3
+            case 6: //Caitlin new 4
+            case 7: //Square John one
+            case 8://Square John two
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
                 playerOne.transform.position = new Vector2(-4f, 0f);
                 playerTwo.transform.position = new Vector2(4f, 0f);
                 break;
