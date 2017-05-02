@@ -199,7 +199,7 @@ public class LevelController : MonoBehaviour {
                 spawnCharlie();
                 break;
             case 3:
-            case 4:
+            //case 4:
                 spawnCaitlin(0);
                 break;
             case 6:
