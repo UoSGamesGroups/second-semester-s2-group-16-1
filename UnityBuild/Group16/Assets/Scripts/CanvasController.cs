@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour {
 
+    [Header("Fonts")]
+    public Font charlieFont;
+    public Font caitlinFont;
+
     [Header("Text")]
     public Text playerOneScore;
     public Text playerTwoScore;
@@ -46,6 +50,7 @@ public class CanvasController : MonoBehaviour {
         playerWinText.text = "";
         playerWinButton.SetActive(false);
 
+        //Setup balls
         for (int i = 0; i < playerOneButtons.Length; i++)
         {
             if (lc.player1Balls[i] == BallController.ballType.balloon) playerOneButtons[i].GetComponent<Image>().sprite = sprite_balloon;
@@ -63,6 +68,48 @@ public class CanvasController : MonoBehaviour {
             else if (lc.player2Balls[i] == BallController.ballType.slime) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_slime;
             else if (lc.player2Balls[i] == BallController.ballType.fire) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_fire;
             else if (lc.player2Balls[i] == BallController.ballType.smoke) playerTwoButtons[i].GetComponent<Image>().sprite = sprite_smoke;
+        }
+
+        //Setup fonts
+        switch (lc.selectedLevel)
+        {
+            //Charlie + john
+            case 0:
+            case 1:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 7:
+            case 8:
+                playerOneScore.font = charlieFont;
+                playerTwoScore.font = charlieFont;
+                roundTimerLeft.font = charlieFont;
+                roundTimerRight.font = charlieFont;
+                break;
+
+            //Caitlin
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+                playerOneScore.font = caitlinFont;
+                playerTwoScore.font = caitlinFont;
+                roundTimerLeft.font = caitlinFont;
+                roundTimerRight.font = caitlinFont;
+                break;
+
+            default:
+                Debug.Log("Error setting font.");
+                break;
         }
 
         //showPlayerOneBallGUI(false);
